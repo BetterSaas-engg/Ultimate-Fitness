@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     padding: space.lg,
     gap: space.sm,
   },
-  kicker: { fontSize: 10, fontWeight: '800', color: colors.accent, letterSpacing: 0.8 },
+  kicker: { fontSize: 11, fontWeight: '800', color: colors.accentInk, letterSpacing: 0.8 },
   headline: { ...type.h2 },
   summary: { ...type.small, color: colors.text, lineHeight: 20 },
   counts: { flexDirection: 'row', flexWrap: 'wrap', gap: space.md, marginTop: space.xs },

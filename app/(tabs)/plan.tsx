@@ -209,8 +209,8 @@ const styles = StyleSheet.create({
     padding: 3,
     gap: 3,
   },
-  segment: { flex: 1, paddingVertical: space.sm, borderRadius: radius.sm, alignItems: 'center' },
-  segmentOn: { backgroundColor: colors.surfaceAlt },
+  segment: { flex: 1, paddingVertical: space.md, borderRadius: radius.sm, alignItems: 'center' },
+  segmentOn: { backgroundColor: colors.bg, boxShadow: '0 1px 3px rgba(33,46,84,0.12)' },
   segmentText: { ...type.small, fontWeight: '600' },
   segmentTextOn: { color: colors.text },
 
@@ -226,11 +226,11 @@ const styles = StyleSheet.create({
   weekText: { ...type.small, fontWeight: '700' },
   weekTextOn: { color: colors.onAccent },
 
-  unverified: { ...type.small, color: colors.increased, marginBottom: space.lg, lineHeight: 18 },
+  unverified: { ...type.small, color: colors.increasedInk, marginBottom: space.lg, lineHeight: 18 },
 
   dayBlock: { marginBottom: space.xl },
   dayHeader: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginBottom: space.md },
-  dayChanged: { fontSize: 10, fontWeight: '800', color: colors.accent, letterSpacing: 0.8 },
+  dayChanged: { fontSize: 11, fontWeight: '800', color: colors.accentInk, letterSpacing: 0.8 },
 
   phaseMeta: { ...type.small, marginTop: 2 },
   phaseSummary: { ...type.small, color: colors.text, marginTop: space.sm, lineHeight: 19 },

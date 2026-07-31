@@ -174,5 +174,5 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     alignItems: 'center',
   },
-  revertBtnText: { color: colors.increased, fontWeight: '700', fontSize: 15 },
+  revertBtnText: { color: colors.increasedInk, fontWeight: '700', fontSize: 15 },
 });

@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
   name: { ...type.body },
   meta: { ...type.tiny, marginTop: 1 },
   flags: { alignItems: 'flex-end', gap: 2 },
-  flagPre: { fontSize: 9, fontWeight: '800', color: colors.premium, letterSpacing: 0.5 },
-  flagNote: { fontSize: 9, fontWeight: '800', color: colors.increased, letterSpacing: 0.5 },
+  flagPre: { fontSize: 10, fontWeight: '800', color: colors.premiumInk, letterSpacing: 0.5 },
+  flagNote: { fontSize: 10, fontWeight: '800', color: colors.increasedInk, letterSpacing: 0.5 },
 
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(33,46,84,0.45)',
     justifyContent: 'center',
     padding: space.xl,
   },
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     padding: space.md,
   },
-  noteLabel: { fontSize: 10, fontWeight: '800', color: colors.increased, letterSpacing: 0.6 },
+  noteLabel: { fontSize: 11, fontWeight: '800', color: colors.increasedInk, letterSpacing: 0.6 },
   noteText: { ...type.small, color: colors.text, marginTop: space.xs },
   preBox: {
     marginTop: space.md,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     padding: space.md,
   },
-  preLabel: { fontSize: 10, fontWeight: '800', color: colors.premium, letterSpacing: 0.6 },
+  preLabel: { fontSize: 11, fontWeight: '800', color: colors.premiumInk, letterSpacing: 0.6 },
   preText: { ...type.small, color: colors.text, marginTop: space.xs },
   closeBtn: {
     marginTop: space.xl,

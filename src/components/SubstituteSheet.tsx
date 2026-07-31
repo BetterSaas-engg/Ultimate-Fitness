@@ -100,7 +100,7 @@ function Option({
         <Text
           style={[
             styles.delta,
-            delta && delta.protein < 0 ? { color: colors.increased } : { color: colors.textMuted },
+            delta && delta.protein < 0 ? { color: colors.increasedInk } : { color: colors.textMuted },
           ]}
         >
           {deltaText}
@@ -113,7 +113,7 @@ function Option({
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(33,46,84,0.45)',
     justifyContent: 'center',
     padding: space.xl,
   },
@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
   },
   restore: { borderBottomWidth: 1, borderBottomColor: colors.border },
-  restoreMark: { color: colors.accent, fontSize: 18 },
+  restoreMark: { color: colors.accentInk, fontSize: 20 },
   optName: { ...type.body },
   optServing: { ...type.tiny, marginTop: 2 },
-  optNote: { ...type.tiny, color: colors.increased, marginTop: 3, lineHeight: 15 },
+  optNote: { ...type.tiny, color: colors.increasedInk, marginTop: 3, lineHeight: 16 },
   delta: { ...type.small, textAlign: 'right', flexShrink: 0, maxWidth: 130 },
   closeBtn: {
     marginTop: space.lg,

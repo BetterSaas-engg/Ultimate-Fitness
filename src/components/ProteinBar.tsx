@@ -1,55 +1,68 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { round1 } from '@/lib/macros';
-import { colors, radius, space, type } from '@/theme';
+import { colors, gradients, radius, space, type } from '@/theme';
 
 /**
- * Logged protein against the member's target, with the rest of the plan shown
- * behind it so the gap reads as "still to eat" rather than "failed".
+ * Logged protein against the day's target.
+ *
+ * The target is THE DAY'S PLANNED TOTAL by default - eat what the gym wrote
+ * down and you hit 100%. A fixed number was the wrong model: this plan runs
+ * ~190g on week 2, so a 100g default filled the bar before lunch and stopped
+ * meaning anything.
+ *
+ * An explicit onboarding value overrides it, and when it does we say so, since
+ * "target 120 / plan 190" needs explaining rather than hiding.
  */
 export function ProteinBar({
   logged,
   planned,
-  target,
+  overrideTarget,
   estimated,
 }: {
   logged: number;
+  /** Sum of everything on today's plan, substitutions applied. */
   planned: number;
-  target: number;
+  /** Optional fixed target from onboarding. Falls back to `planned`. */
+  overrideTarget?: number;
   estimated: boolean;
 }) {
-  const safeTarget = target > 0 ? target : 1;
-  const loggedPct = Math.min(100, (logged / safeTarget) * 100);
-  // Planned is what the whole day adds up to, so the ghost bar starts where the
-  // logged bar ends and never double-counts it.
-  const plannedPct = Math.min(100, (Math.max(planned, logged) / safeTarget) * 100);
+  const usingOverride = typeof overrideTarget === 'number' && overrideTarget > 0;
+  const target = usingOverride ? overrideTarget : planned;
 
-  const hitTarget = logged >= target;
+  const safeTarget = target > 0 ? target : 1;
+  const pct = Math.min(100, (logged / safeTarget) * 100);
+  const hit = logged >= target && target > 0;
   const remaining = round1(Math.max(0, target - logged));
 
   return (
     <View style={styles.wrap}>
       <View style={styles.header}>
         <Text style={styles.label}>Protein today</Text>
-        <Text style={styles.value}>
-          <Text style={[styles.big, hitTarget && { color: colors.added }]}>{round1(logged)}</Text>
-          <Text style={styles.of}> / {target}g</Text>
+        <Text style={styles.readout}>
+          <Text style={[styles.big, hit && { color: colors.addedInk }]}>{round1(logged)}</Text>
+          <Text style={styles.of}> / {round1(target)}g</Text>
         </Text>
       </View>
 
       <View style={styles.track}>
-        <View style={[styles.ghost, { width: `${plannedPct}%` }]} />
-        <View
-          style={[
-            styles.fill,
-            { width: `${loggedPct}%`, backgroundColor: hitTarget ? colors.added : colors.accent },
-          ]}
-        />
+        {hit ? (
+          <View style={[styles.fill, { width: `${pct}%`, backgroundColor: colors.added }]} />
+        ) : (
+          <LinearGradient
+            colors={gradients.brand}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.fill, { width: `${pct}%` }]}
+          />
+        )}
       </View>
 
       <Text style={styles.caption}>
-        {hitTarget
-          ? `Target hit. The full day's plan comes to ${round1(planned)}g.`
-          : `${remaining}g to go — the rest of today's plan has ${round1(Math.max(0, planned - logged))}g in it.`}
+        {hit
+          ? "That's the day's plan covered."
+          : `${remaining}g to go${usingOverride ? '' : " — that's everything on today's plan"}.`}
+        {usingOverride ? ` Your target, not the plan's ${round1(planned)}g.` : ''}
         {estimated ? ' Estimated values.' : ''}
       </Text>
     </View>
@@ -58,25 +71,25 @@ export function ProteinBar({
 
 const styles = StyleSheet.create({
   wrap: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.bg,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: radius.lg,
+    borderRadius: radius.xl,
     padding: space.lg,
     gap: space.sm,
+    boxShadow: '0 4px 12px rgba(33,46,84,0.08)',
   },
   header: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' },
   label: { ...type.h3 },
-  value: { flexDirection: 'row' },
-  big: { fontSize: 22, fontWeight: '800', color: colors.text },
+  readout: { flexDirection: 'row' },
+  big: { fontSize: 24, fontWeight: '800', color: colors.text },
   of: { ...type.small },
   track: {
-    height: 10,
+    height: 14,
     borderRadius: radius.pill,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: colors.surface,
     overflow: 'hidden',
   },
-  ghost: { position: 'absolute', left: 0, top: 0, bottom: 0, backgroundColor: colors.border },
-  fill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: radius.pill },
-  caption: { ...type.tiny, lineHeight: 15 },
+  fill: { height: '100%', borderRadius: radius.pill },
+  caption: { ...type.tiny, lineHeight: 17 },
 });

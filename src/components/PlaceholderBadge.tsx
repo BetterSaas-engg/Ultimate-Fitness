@@ -27,20 +27,20 @@ export function PlaceholderBadge({ compact }: { compact?: boolean }) {
 
 const styles = StyleSheet.create({
   pill: {
-    backgroundColor: colors.accentSoft,
+    backgroundColor: colors.increasedSoft,
     borderRadius: radius.pill,
     paddingHorizontal: space.sm,
     paddingVertical: 2,
   },
-  pillText: { fontSize: 10, fontWeight: '800', color: colors.accent, letterSpacing: 0.6 },
+  pillText: { fontSize: 11, fontWeight: '800', color: colors.increasedInk, letterSpacing: 0.6 },
   banner: {
-    backgroundColor: colors.accentSoft,
+    backgroundColor: colors.increasedSoft,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: colors.increased,
     borderRadius: radius.md,
     padding: space.md,
     gap: space.xs,
   },
-  bannerTitle: { ...type.h3, color: colors.accent },
+  bannerTitle: { ...type.h3, color: colors.increasedInk },
   bannerBody: { ...type.small, color: colors.text },
 });

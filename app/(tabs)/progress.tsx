@@ -51,12 +51,30 @@ export default function ProgressScreen() {
           </Text>
         )}
 
-        <Section title="Daily protein target" subtitle="Drives the bar on your Today screen">
+        <Section
+          title="Daily protein target"
+          subtitle="By default the bar aims at whatever that day's plan adds up to"
+        >
           <View style={styles.targetCard}>
-            <ProteinTargetStepper
-              value={profile?.proteinTargetG ?? DEFAULT_PROTEIN_TARGET_G}
-              onChange={(v) => update({ proteinTargetG: v })}
-            />
+            <View style={styles.targetHeader}>
+              <View style={{ flex: 1 }}>
+                <Text style={type.body}>Set my own target</Text>
+                <Text style={type.tiny}>Only if your trainer gave you a number</Text>
+              </View>
+              <Switch
+                value={typeof profile?.proteinTargetG === 'number'}
+                onValueChange={(v) =>
+                  update({ proteinTargetG: v ? DEFAULT_PROTEIN_TARGET_G : undefined })
+                }
+                trackColor={{ true: colors.accent, false: colors.surfaceAlt }}
+              />
+            </View>
+            {typeof profile?.proteinTargetG === 'number' && (
+              <ProteinTargetStepper
+                value={profile.proteinTargetG}
+                onChange={(v) => update({ proteinTargetG: v })}
+              />
+            )}
           </View>
         </Section>
 
@@ -89,7 +107,7 @@ export default function ProgressScreen() {
         <Section title="From the gym">
           <UpsellCard
             title="Your first free session with a trainer"
-            body="You've shown up. A trainer will walk you through the machines and fix your form — no charge, no sales pitch."
+            body="You've shown up. One of the Ultimate Fitness trainers will walk you through the machines and fix your form — no charge, no sales pitch."
             cta="Book at the front desk"
           />
         </Section>
@@ -162,7 +180,7 @@ export default function ProgressScreen() {
 function Stat({ value, label, big }: { value: string; label: string; big?: boolean }) {
   return (
     <View style={styles.stat}>
-      <Text style={[styles.statValue, big && { color: colors.accent }]}>{value}</Text>
+      <Text style={[styles.statValue, big && { color: colors.accentInk }]}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
     </View>
   );
@@ -201,9 +219,11 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     borderRadius: radius.md,
   },
-  roleOn: { backgroundColor: colors.surfaceAlt },
-  roleMark: { color: colors.accent, fontSize: 12 },
+  roleOn: { backgroundColor: colors.accentSoft },
+  roleMark: { color: colors.accentInk, fontSize: 14 },
+  targetHeader: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   targetCard: {
+    gap: space.md,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
@@ -232,8 +252,8 @@ const styles = StyleSheet.create({
   demoRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   jumpRow: { flexDirection: 'row', gap: space.sm, flexWrap: 'wrap' },
   jump: {
-    width: 40,
-    height: 36,
+    width: 46,
+    height: 44,
     borderRadius: radius.sm,
     borderWidth: 1,
     borderColor: colors.border,
@@ -248,5 +268,5 @@ const styles = StyleSheet.create({
     borderTopColor: colors.border,
     paddingTop: space.lg,
   },
-  resetText: { ...type.small, color: colors.accent },
+  resetText: { ...type.small, color: colors.increasedInk, fontWeight: '700' },
 });

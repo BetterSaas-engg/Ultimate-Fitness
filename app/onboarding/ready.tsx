@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
@@ -12,13 +12,16 @@ import { colors, radius, space, type } from '@/theme';
 export default function ReadyScreen() {
   const router = useRouter();
   const { update } = useProfile();
+  // Off by default: the bar targets the day's planned total unless a member
+  // deliberately overrides it.
+  const [useOverride, setUseOverride] = useState(false);
   const [proteinTarget, setProteinTarget] = useState(DEFAULT_PROTEIN_TARGET_G);
 
   async function start() {
     const start = todayKey();
     await update({
       startDate: start,
-      proteinTargetG: proteinTarget,
+      proteinTargetG: useOverride ? proteinTarget : undefined,
       onboardedAt: new Date().toISOString(),
     });
     router.replace('/(tabs)');
@@ -47,22 +50,34 @@ export default function ReadyScreen() {
           <Step
             n="3"
             title="See what's on at the gym"
-            body="Today's classes show up on your daily plan, with the instructor's name."
+            body="Today's classes show up on your daily plan, with the instructor and the time."
           />
           <Step
             n="4"
             title="Eat like the plan says"
-            body="The 7-day meal plan is part of Nutrition Coaching. You'll get a taste of it for free."
+            body="The 7-day meal plan is part of Nutrition Coaching, built by the Ultimate Fitness nutrition team. You'll get a taste of it for free."
           />
         </View>
 
         <View style={styles.targetBlock}>
-          <Text style={type.h3}>Daily protein target</Text>
-          <Text style={styles.targetHint}>
-            {DEFAULT_PROTEIN_TARGET_G}g is a sensible starting point. A trainer will tune it once
-            they've met you.
-          </Text>
-          <ProteinTargetStepper value={proteinTarget} onChange={setProteinTarget} />
+          <View style={styles.targetHeader}>
+            <View style={{ flex: 1 }}>
+              <Text style={type.h3}>Daily protein target</Text>
+              <Text style={styles.targetHint}>
+                By default you're aiming for whatever that day's plan adds up to. Set your own
+                number only if your trainer gave you one.
+              </Text>
+            </View>
+            <Switch
+              value={useOverride}
+              onValueChange={setUseOverride}
+              trackColor={{ true: colors.accent, false: colors.surfaceAlt }}
+              accessibilityLabel="Set my own protein target"
+            />
+          </View>
+          {useOverride && (
+            <ProteinTargetStepper value={proteinTarget} onChange={setProteinTarget} />
+          )}
         </View>
 
         <Pressable onPress={start} accessibilityRole="button" style={styles.cta}>
@@ -95,21 +110,21 @@ const styles = StyleSheet.create({
   kicker: {
     fontSize: 11,
     fontWeight: '800',
-    color: colors.accent,
+    color: colors.accentInk,
     letterSpacing: 1.2,
     marginBottom: space.sm,
   },
   list: { marginTop: space.xl, gap: space.lg },
   step: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
   num: {
-    width: 26,
-    height: 26,
+    width: 30,
+    height: 30,
     borderRadius: radius.pill,
     backgroundColor: colors.accentSoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  numText: { color: colors.accent, fontWeight: '800', fontSize: 13 },
+  numText: { color: colors.accentInk, fontWeight: '800', fontSize: 14 },
   stepBody: { ...type.small, marginTop: 3, lineHeight: 19 },
   targetBlock: {
     marginTop: space.xxl,
@@ -120,7 +135,8 @@ const styles = StyleSheet.create({
     padding: space.lg,
     gap: space.md,
   },
-  targetHint: { ...type.small, lineHeight: 19, marginTop: -space.sm },
+  targetHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: space.md },
+  targetHint: { ...type.small, lineHeight: 19, marginTop: space.xs },
   cta: {
     marginTop: space.xl,
     backgroundColor: colors.accent,

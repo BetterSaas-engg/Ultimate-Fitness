@@ -109,5 +109,5 @@ const styles = StyleSheet.create({
   },
   checkOn: { backgroundColor: colors.added, borderColor: colors.added },
   checkMark: { color: colors.textMuted, fontSize: 16, fontWeight: '700' },
-  checkMarkOn: { color: colors.onAccent },
+  checkMarkOn: { color: colors.onDark },
 });

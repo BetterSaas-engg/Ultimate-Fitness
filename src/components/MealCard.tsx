@@ -196,14 +196,14 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     gap: space.xs,
   },
-  cardChanged: { borderColor: colors.accent },
+  cardChanged: { borderColor: colors.accent, borderWidth: 2 },
   header: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: space.sm },
   slot: { ...type.h3 },
   itemBlock: {},
   row: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingVertical: 2 },
   bullet: { color: colors.textFaint },
   food: { ...type.body, flexShrink: 1, flexGrow: 1 },
-  foodSwapped: { color: colors.swapped },
+  foodSwapped: { color: colors.swappedInk, fontWeight: '600' },
   foodRemoved: {
     ...type.body,
     flexShrink: 1,
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   replaceText: { fontSize: 10, fontWeight: '700', color: colors.textMuted, letterSpacing: 0.4 },
   swapMeta: { paddingLeft: space.lg, gap: 1, marginBottom: space.xs },
   swapFrom: { ...type.tiny, fontStyle: 'italic' },
-  swapDelta: { ...type.tiny, color: colors.increased, fontWeight: '700' },
+  swapDelta: { ...type.tiny, color: colors.increasedInk, fontWeight: '700' },
   swapSummary: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   swapSummaryText: { ...type.small, color: colors.removed, flexShrink: 1 },
   prep: { ...type.small, fontStyle: 'italic', marginTop: space.sm },
-  note: { ...type.small, color: colors.accent, marginTop: space.xs },
+  note: { ...type.small, color: colors.accentInk, marginTop: space.xs },
   check: {
     width: 32,
     height: 32,
@@ -243,5 +243,5 @@ const styles = StyleSheet.create({
   },
   checkOn: { backgroundColor: colors.added, borderColor: colors.added },
   checkMark: { color: colors.textMuted, fontSize: 16, fontWeight: '700' },
-  checkMarkOn: { color: colors.onAccent },
+  checkMarkOn: { color: colors.onDark },
 });

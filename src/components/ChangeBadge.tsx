@@ -12,9 +12,9 @@ import { colors, radius, space } from '@/theme';
 export type BadgeKind = ChangeKind | 'removed';
 
 const STYLES: Record<BadgeKind, { label: string; glyph: string; fg: string; bg: string }> = {
-  added: { label: 'NEW', glyph: '+', fg: colors.added, bg: colors.addedSoft },
-  increased: { label: 'MORE', glyph: '▲', fg: colors.increased, bg: colors.increasedSoft },
-  'swapped-in': { label: 'SWAPPED', glyph: '⇄', fg: colors.swapped, bg: colors.swappedSoft },
+  added: { label: 'NEW', glyph: '+', fg: colors.addedInk, bg: colors.addedSoft },
+  increased: { label: 'MORE', glyph: '▲', fg: colors.increasedInk, bg: colors.increasedSoft },
+  'swapped-in': { label: 'SWAPPED', glyph: '⇄', fg: colors.swappedInk, bg: colors.swappedSoft },
   removed: { label: 'DROPPED', glyph: '−', fg: colors.removed, bg: colors.surfaceAlt },
 };
 

@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     padding: space.lg,
   },
-  goalOff: { opacity: 0.55, backgroundColor: colors.bg },
-  goalPressed: { borderColor: colors.accent },
+  goalOff: { opacity: 0.6, backgroundColor: colors.bg },
+  goalPressed: { borderColor: colors.accent, backgroundColor: colors.accentSoft },
   goalLabel: { ...type.h3 },
   goalBlurb: { ...type.small, marginTop: 3, lineHeight: 18 },
   textOff: { color: colors.textFaint },
@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.sm,
     paddingVertical: 3,
   },
-  soonText: { fontSize: 9, fontWeight: '800', color: colors.textMuted, letterSpacing: 0.6 },
+  soonText: { fontSize: 10, fontWeight: '800', color: colors.textMuted, letterSpacing: 0.6 },
   footnote: { ...type.tiny, marginTop: space.xl, lineHeight: 16 },
 });

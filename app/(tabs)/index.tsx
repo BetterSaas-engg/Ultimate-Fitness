@@ -18,11 +18,11 @@ import { tierAllows } from '@/data/catalog';
 import { NUTRITION_PROGRAM } from '@/data/programs';
 
 import { mealEntryId, useLog, WORKOUT_ENTRY } from '@/store/useLog';
-import { useProfile, DEFAULT_PROTEIN_TARGET_G } from '@/store/useProfile';
+import { useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
 import { useAdminEdits } from '@/store/useAdminEdits';
-import { applyNutritionDayEdits, applySessionEdits, itemIsEstimated, phaseStillPlaceholder } from '@/data/adminOverlay';
-import { anyEstimated, loggedMacros, plannedMacros } from '@/lib/macros';
+import { applyNutritionDayEdits, applySessionEdits, itemIsEstimated } from '@/data/adminOverlay';
+import { loggedMacros, plannedMacros } from '@/lib/macros';
 import { addDays, dayOfWeekOf, formatDateLong, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
 
@@ -44,7 +44,7 @@ export default function TodayScreen() {
   if (loading || !profile) {
     return (
       <SafeAreaView style={styles.safe}>
-        <ActivityIndicator color={colors.accent} style={{ marginTop: space.xxl }} />
+        <ActivityIndicator color={colors.accentInk} style={{ marginTop: space.xxl }} />
       </SafeAreaView>
     );
   }
@@ -80,7 +80,9 @@ export default function TodayScreen() {
       ? nutrition.day.meals
       : nutrition.day.meals.slice(0, 1);
 
-  const proteinTarget = profile.proteinTargetG ?? DEFAULT_PROTEIN_TARGET_G;
+  // Undefined unless the member deliberately set one; the bar then targets
+  // the day's planned total instead.
+  const proteinOverride = profile.proteinTargetG;
   const planned = plannedMacros(visibleMeals, substitutions);
   const eaten = loggedMacros(visibleMeals, substitutions, (slot) =>
     isLogged(dateKey, mealEntryId(slot))
@@ -88,9 +90,8 @@ export default function TodayScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <BrandHeader right={`Day ${programDay}`} />
+      <BrandHeader right={`Day ${programDay}`} title={formatDateLong(dateKey)} />
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={type.h1}>{formatDateLong(dateKey)}</Text>
         {(workout?.beyondProgram || nutrition?.beyondProgram) && (
           <Text style={styles.beyond}>
             You're past the content we have. Repeating the last block until the gym adds more.
@@ -102,7 +103,7 @@ export default function TodayScreen() {
             <ProteinBar
               logged={eaten.protein}
               planned={planned.protein}
-              target={proteinTarget}
+              overrideTarget={proteinOverride}
               estimated={visibleMeals.some((m) => m.items.some((i) => itemIsEstimated(i, edits)))}
             />
           </View>
@@ -166,7 +167,7 @@ export default function TodayScreen() {
                 </View>
                 <UpsellCard
                   title="Unlock the full meal plan"
-                  body="Sheena and the team build these week by week. Week 2 steps your portions up and adds complex carbs."
+                  body="The Ultimate Fitness nutrition team builds these week by week. Week 2 steps your portions up and adds complex carbs."
                   cta="Talk to the front desk"
                   onPress={() => router.push('/(tabs)/progress')}
                 />
@@ -192,7 +193,7 @@ export default function TodayScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.xl, paddingBottom: space.xxl },
-  beyond: { ...type.small, color: colors.increased, marginTop: space.sm },
+  beyond: { ...type.small, color: colors.increasedInk, marginTop: space.sm },
   locked: {
     backgroundColor: colors.surface,
     borderWidth: 1,

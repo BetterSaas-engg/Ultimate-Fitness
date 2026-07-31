@@ -158,10 +158,10 @@ export function ConfirmDialog({
 
 export function Pill({ text, tone }: { text: string; tone: 'ok' | 'warn' | 'off' | 'info' }) {
   const map = {
-    ok: { fg: colors.added, bg: colors.addedSoft },
-    warn: { fg: colors.increased, bg: colors.increasedSoft },
+    ok: { fg: colors.addedInk, bg: colors.addedSoft },
+    warn: { fg: colors.increasedInk, bg: colors.increasedSoft },
     off: { fg: colors.removed, bg: colors.surfaceAlt },
-    info: { fg: colors.accent, bg: colors.accentSoft },
+    info: { fg: colors.accentInk, bg: colors.accentSoft },
   }[tone];
   return (
     <View style={[styles.pill, { backgroundColor: map.bg }]}>
@@ -181,9 +181,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingVertical: space.sm,
   },
-  dot: { width: 7, height: 7, borderRadius: 4, backgroundColor: colors.increased },
-  barText: { flex: 1, fontSize: 10, fontWeight: '800', color: colors.increased, letterSpacing: 0.4 },
-  back: { ...type.small, color: colors.accent, fontWeight: '700' },
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.increased },
+  barText: { flex: 1, fontSize: 11, fontWeight: '800', color: colors.increasedInk, letterSpacing: 0.4 },
+  back: { ...type.small, color: colors.accentInk, fontWeight: '700' },
 
   subtitle: { ...type.small, marginTop: 3, lineHeight: 19 },
 
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
 
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(33,46,84,0.5)',
     justifyContent: 'center',
     padding: space.xl,
   },
@@ -247,5 +247,5 @@ const styles = StyleSheet.create({
   confirmText: { color: colors.onAccent, fontWeight: '700', fontSize: 15 },
 
   pill: { borderRadius: radius.pill, paddingHorizontal: space.sm, paddingVertical: 2 },
-  pillText: { fontSize: 9, fontWeight: '800', letterSpacing: 0.6 },
+  pillText: { fontSize: 10, fontWeight: '800', letterSpacing: 0.6 },
 });

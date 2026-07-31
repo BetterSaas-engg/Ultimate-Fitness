@@ -1,71 +1,102 @@
 /**
- * Ultimate Fitness brand palette.
+ * Ultimate Fitness — light theme.
  *
- * Extracted from ultimatefitnessclub.ca -> assets/css/style.css, which defines
- * proper custom properties, so these are the gym's real values rather than
- * colours sampled off a screenshot.
+ * Sourced from a full inventory of ultimatefitnessclub.ca/assets/css/style.css
+ * (35 distinct colour values), not just the :root block. Two values here are
+ * NOT custom properties and were found by parsing declarations:
  *
- *   --theme-color        #07A4E7   primary
- *   --color-dark         #222222
- *   --footer-bg          #161616
- *   --footer-bg2         #0B0B0B
- *   --footer-text-color  #F5FAFF
- *   --body-text-color    #757F95
- *   --color-green        #11B76B
+ *   #212E54  rgba(33,46,84,1) on .heading-divider — their navy, used as ink
+ *   #FF7E38  the .header-top gradient — reused as the "increased" accent
  *
- * THE ONE COMPROMISE: the site puts white text on #07A4E7 buttons, which is
- * 2.81:1 - well under AA. We keep their exact blue as the button fill and use
- * near-black labels instead (7.00:1, AAA). Their identity survives; only the
- * label ink changes. Every pair below is AA or better on our surfaces.
+ * The governing constraint: #07A4E7 fails on white in BOTH directions — as
+ * text (2.81:1) and beneath white labels (2.81:1). So the system separates
+ * vivid FILLS from text-safe siblings of the same hue:
  *
- * The app shell stays dark. #0B0B0B / #161616 / #222222 are the gym's own
- * footer and dark-section values, so this is their palette, not an invention.
+ *   colors.accent      fills, progress, active states — never small text
+ *   colors.accentInk   the same blue, darkened until it clears AA as text
+ *
+ * Every *Ink token is measured against white, not estimated. If you add a
+ * colour here, run the check before shipping it.
  */
 
 export const colors = {
-  // Surfaces - the site's dark-section stack
-  bg: '#0B0B0B', // --footer-bg2
-  surface: '#161616', // --footer-bg
-  surfaceAlt: '#222222', // --color-dark
-  border: 'rgba(255,255,255,0.10)', // --border-white-color, nudged up for dark UI
+  // Surfaces
+  bg: '#FFFFFF',
+  surface: '#EEF1FB', // lighter mix of --theme-bg-light
+  surfaceAlt: '#E4E8F7',
+  band: '#DBDEF3', // --theme-bg-light, as-is
+  border: '#D6DBE8', // decorative card edges
+  borderStrong: '#757F95', // control outlines — their --body-text-color, 4.02:1
 
-  // Text
-  text: '#F5FAFF', // --footer-text-color      17.24:1  AAA
-  textMuted: '#98A3B8', //                      7.12:1  AAA
-  textFaint: '#757F95', // --body-text-color    4.50:1  AA
+  // Text — brand-native navy, not a generic grey
+  text: '#212E54', // 13.26:1 on white · 9.95:1 on the band   AAA
+  textMuted: '#5C6780', //  5.67:1 on white                        AA
+  /** Same as textMuted on purpose: hierarchy comes from size and weight. */
+  textFaint: '#5C6780',
+  /** For text sitting on an accent/gradient fill. */
+  onDark: '#FFFFFF',
 
   // Brand
-  accent: '#07A4E7', // --theme-color           6.44:1  AA as text on surface
-  accentDeep: '#1c72b3', // --theme-gradient partner
-  accentSoft: '#08283A', // dark tint for badge fills
-  /** Labels on an accent-filled control. NEVER white - that pair fails at 2.81:1. */
-  onAccent: '#0B0B0B', //                       7.00:1  AAA
+  accent: '#07A4E7', // --theme-color. FILLS ONLY
+  accentInk: '#067EB2', // links and blue text            4.53:1  AA
+  accentDeep: '#1C72B3', // --theme-gradient partner        5.11:1  AA
+  accentSoft: '#DDF1FC', // tinted fill behind blue badges
+  onAccent: '#212E54', // labels on an accent fill        4.72:1  AA
 
-  // Semantic states. These carry meaning independent of brand, so they stay
-  // distinguishable - but green and pink are the gym's own values.
-  added: '#11B76B', // --color-green            6.90:1  AA
-  addedSoft: '#0C2A1B',
-  increased: '#F2A93B', //                      9.06:1  AAA
-  increasedSoft: '#33260E',
-  swapped: '#e667a4', // --theme-gradient2      5.89:1  AA
-  swappedSoft: '#3A1628',
-  removed: '#8A93A3', //                        5.85:1  AA
+  // Semantic — vivid fill, darkened sibling for text, same hue family
+  added: '#11B76B', // --color-green
+  addedInk: '#0E7A48', //  5.39:1  AA
+  addedSoft: '#DCF7EA',
+  increased: '#FF7E38', // .header-top gradient start
+  increasedInk: '#C2410C', //  5.18:1  AA
+  increasedSoft: '#FFEAD9',
+  swapped: '#E667A4', // --theme-gradient2 start
+  swappedInk: '#B83A72', //  5.40:1  AA
+  swappedSoft: '#FBE3EF',
+  removed: '#5C6780',
 
-  premium: '#d6b161', // gold from their CSS    8.89:1  AAA
-  premiumSoft: '#2E260C',
-  /** Labels on a premium-filled control. */
-  onPremium: '#0B0B0B', //                      9.67:1  AAA
+  // Premium — the gradient2 pink→blue, not gold. gradient2 is a declared brand
+  // variable; the gold only ever appeared as a text-selection highlight.
+  premium: '#E667A4',
+  premiumInk: '#B83A72', //  5.40:1  AA
+  premiumSoft: '#FBE3EF',
+  onPremium: '#FFFFFF',
+};
+
+/**
+ * Their signature depth device. White text cannot sit on `brand` — it fails at
+ * the #07A4E7 end — so that one stays decorative or carries ink-navy text.
+ * `brand2` is dark enough throughout for white text.
+ */
+export const gradients = {
+  /** --theme-gradient */
+  brand: ['#07A4E7', '#1C72B3'] as [string, string],
+  /** --theme-gradient2, the declared-but-unused pink→blue. Premium surfaces. */
+  brand2: ['#E667A4', '#1C72B3'] as [string, string],
+  /** .header-top */
+  hot: ['#FF7E38', '#FA4014'] as [string, string],
 };
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 };
+export const radius = { sm: 8, md: 12, lg: 16, xl: 22, pill: 999 };
 
-export const radius = { sm: 8, md: 12, lg: 16, pill: 999 };
+/**
+ * The site separates cards with soft shadow rather than heavy borders.
+ * boxShadow, not the deprecated shadow* props.
+ */
+export const shadow = {
+  card: { boxShadow: '0 4px 12px rgba(33,46,84,0.08)' },
+  raised: { boxShadow: '0 8px 24px rgba(33,46,84,0.12)' },
+};
+
+/** Minimum comfortable tap target. */
+export const touch = { min: 44 };
 
 export const type = {
-  h1: { fontSize: 28, fontWeight: '700' as const, color: colors.text },
-  h2: { fontSize: 20, fontWeight: '700' as const, color: colors.text },
-  h3: { fontSize: 16, fontWeight: '600' as const, color: colors.text },
-  body: { fontSize: 15, color: colors.text },
-  small: { fontSize: 13, color: colors.textMuted },
-  tiny: { fontSize: 11, color: colors.textFaint },
+  h1: { fontSize: 30, fontWeight: '800' as const, color: colors.text },
+  h2: { fontSize: 21, fontWeight: '700' as const, color: colors.text },
+  h3: { fontSize: 17, fontWeight: '700' as const, color: colors.text },
+  body: { fontSize: 16, color: colors.text },
+  small: { fontSize: 14, color: colors.textMuted },
+  tiny: { fontSize: 12, color: colors.textMuted },
 };
