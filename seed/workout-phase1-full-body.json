@@ -1,0 +1,53 @@
+{
+  "programId": "uf-starter-workout",
+  "phaseId": "full-body",
+  "sequence": 1,
+  "durationWeeks": 4,
+  "sessionsPerWeek": 3,
+  "verified": false,
+  "contentStatus": "placeholder",
+  "contentOwner": "Ultimate Fitness trainers",
+  "source": "PLACEHOLDER - structural stand-in only. Not written by a trainer. Do not show to a real member.",
+  "transcriptionNotes": [
+    "Every exercise below carries placeholder: true. Grep for that flag to find everything the trainers still owe us.",
+    "Sets/reps are generic beginner defaults chosen to make the UI testable, not programming advice."
+  ],
+  "days": [
+    {
+      "day": 1,
+      "label": "Full Body A",
+      "labelAssumed": true,
+      "exercises": [
+        { "name": "Goblet squat", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Dumbbell bench press", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Seated row", "sets": 3, "reps": "10-12", "placeholder": true },
+        { "name": "Plank", "sets": 3, "reps": "30 sec", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
+    },
+    {
+      "day": 2,
+      "label": "Full Body B",
+      "labelAssumed": true,
+      "exercises": [
+        { "name": "Romanian deadlift", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Lat pulldown", "sets": 3, "reps": "10-12", "placeholder": true },
+        { "name": "Dumbbell shoulder press", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Dead bug", "sets": 3, "reps": "10 per side", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
+    },
+    {
+      "day": 3,
+      "label": "Full Body C",
+      "labelAssumed": true,
+      "exercises": [
+        { "name": "Leg press", "sets": 3, "reps": "10-12", "placeholder": true },
+        { "name": "Incline dumbbell press", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Assisted pull-up", "sets": 3, "reps": "6-8", "placeholder": true },
+        { "name": "Farmer carry", "sets": 3, "reps": "30 sec", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "program": {
+    "id": "uf-starter-workout",
+    "name": "Ultimate Fitness - Starter Workout Program",
+    "type": "workout",
+    "goalType": "stay-healthy",
+    "tier": "free",
+    "audience": "New members / beginners",
+    "sessionsPerWeek": 3,
+    "phases": [
+      {
+        "phaseId": "full-body",
+        "sequence": 1,
+        "durationWeeks": 4,
+        "sessionsPerWeek": 3,
+        "name": "Phase 1 - Full Body"
+      },
+      {
+        "phaseId": "split",
+        "sequence": 2,
+        "durationWeeks": 4,
+        "sessionsPerWeek": 3,
+        "name": "Phase 2 - Split: lower / upper / full",
+        "progressionSummary": "Move from one full-body session repeated three times a week to a lower / upper / full split, still three times a week."
+      }
+    ],
+    "modelNotes": [
+      "Same Program -> Phase -> Day shape as nutrition, but 'day' here means SESSION ORDINAL within the week (1..sessionsPerWeek), not a calendar day.",
+      "Four calendar days a week have no session. The app renders those as an explicit rest day.",
+      "Phase 1 has 3 session templates that cycle across its 4 weeks - it is not 12 hand-written days.",
+      "ALL EXERCISE CONTENT IS PLACEHOLDER. Real programming comes from the Ultimate Fitness trainers.",
+      "Phase 1 sessionsPerWeek (3) and Phase 2 durationWeeks (4) were assumed - confirm with the gym."
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "program": {
+    "id": "uf-starter-nutrition",
+    "name": "Ultimate Fitness - Starter Nutrition Program",
+    "type": "nutrition",
+    "goalType": "stay-healthy",
+    "tier": "premium",
+    "audience": "New members / beginners",
+    "mealSlotsPerDay": 6,
+    "phases": [
+      {
+        "phaseId": "week-1",
+        "sequence": 1,
+        "durationDays": 7
+      },
+      {
+        "phaseId": "week-2",
+        "sequence": 2,
+        "durationDays": 7,
+        "progressionSummary": "Protein portions 5oz -> 6oz; complex carbs introduced (yams, carrots, chick peas, squash, rice, berries); three snacks swapped for dairy/fruit options; bouillons and toasted almonds dropped. Changes printed in caps/red on the paper sheet."
+      }
+    ],
+    "modelNotes": [
+      "Program -> Phases -> Days -> 6 Meals (slots) -> Items.",
+      "Slot labels (Breakfast, Morning snack...) are OUR assumption - the paper grid has no row labels. Confirm with the gym.",
+      "Item 'change' field ('added'/'increased'/'swapped-in') and meal 'changesFromPreviousPhase' power the 'what's new this week' feature.",
+      "MemberLog (actual intake) will reference programId/phaseId/day/slot for adherence tracking - not modeled here yet."
+    ]
+  }
+}

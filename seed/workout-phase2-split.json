@@ -1,0 +1,53 @@
+{
+  "programId": "uf-starter-workout",
+  "phaseId": "split",
+  "sequence": 2,
+  "durationWeeks": 4,
+  "sessionsPerWeek": 3,
+  "verified": false,
+  "contentStatus": "placeholder",
+  "contentOwner": "Ultimate Fitness trainers",
+  "source": "PLACEHOLDER - structural stand-in only. Not written by a trainer. Do not show to a real member.",
+  "transcriptionNotes": [
+    "Every exercise below carries placeholder: true.",
+    "Phase 2 splits the week into lower / upper / full, still three sessions per week."
+  ],
+  "days": [
+    {
+      "day": 1,
+      "label": "Lower",
+      "labelAssumed": false,
+      "exercises": [
+        { "name": "Back squat", "sets": 4, "reps": "6-8", "placeholder": true },
+        { "name": "Romanian deadlift", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Walking lunge", "sets": 3, "reps": "10 per leg", "placeholder": true },
+        { "name": "Calf raise", "sets": 3, "reps": "12-15", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session."
+    },
+    {
+      "day": 2,
+      "label": "Upper",
+      "labelAssumed": false,
+      "exercises": [
+        { "name": "Bench press", "sets": 4, "reps": "6-8", "placeholder": true },
+        { "name": "Bent-over row", "sets": 4, "reps": "8-10", "placeholder": true },
+        { "name": "Overhead press", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Face pull", "sets": 3, "reps": "12-15", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session."
+    },
+    {
+      "day": 3,
+      "label": "Full",
+      "labelAssumed": false,
+      "exercises": [
+        { "name": "Trap bar deadlift", "sets": 3, "reps": "6-8", "placeholder": true },
+        { "name": "Incline dumbbell press", "sets": 3, "reps": "8-10", "placeholder": true },
+        { "name": "Lat pulldown", "sets": 3, "reps": "10-12", "placeholder": true },
+        { "name": "Hanging knee raise", "sets": 3, "reps": "10-12", "placeholder": true }
+      ],
+      "prep": "PLACEHOLDER session."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "_conventions": {
+    "dayOfWeek": "JavaScript convention: 0=Sunday ... 6=Saturday",
+    "time": "24h local gym time (America/Toronto), render as 12h",
+    "source": "ultimatefitnessclub.ca schedule (July 2026). Gym distributes this as a PDF today.",
+    "recurrence": "weekly unless a note says otherwise"
+  },
+  "classes": [
+    { "dayOfWeek": 0, "time": "09:00", "className": "Spin to the Beat", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 0, "time": "09:50", "className": "Pilates Sculpt", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 0, "time": "10:45", "className": "Yin Unplugged", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 0, "time": "11:35", "className": "Gong Bath", "instructor": "Les-Lee", "durationMin": 45, "note": "Specific dates only (e.g. July 26) - not weekly" },
+
+    { "dayOfWeek": 1, "time": "08:15", "className": "Spin", "instructor": "Sheena / Kim", "durationMin": 45 },
+    { "dayOfWeek": 1, "time": "09:15", "className": "Yogalates", "instructor": "Sheena", "durationMin": 50 },
+    { "dayOfWeek": 1, "time": "16:30", "className": "Yin Yoga", "instructor": "Sheena", "durationMin": 55 },
+    { "dayOfWeek": 1, "time": "17:30", "className": "Booty Barre", "instructor": "Kim", "durationMin": 45 },
+    { "dayOfWeek": 1, "time": "18:30", "className": "Zumba", "instructor": "Elizabeth", "durationMin": 60 },
+
+    { "dayOfWeek": 2, "time": "09:00", "className": "Upper Body Lift/Core", "instructor": "Sheena", "durationMin": 30 },
+    { "dayOfWeek": 2, "time": "09:35", "className": "Pilates Barre", "instructor": "Sheena", "durationMin": 45 },
+    { "dayOfWeek": 2, "time": "10:30", "className": "Unity Flow Yoga", "instructor": "Sheena", "durationMin": 55 },
+    { "dayOfWeek": 2, "time": "16:30", "className": "Pilates Sculpt", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 2, "time": "17:30", "className": "Spin", "instructor": "Lisa C / Sarah", "durationMin": 45 },
+    { "dayOfWeek": 2, "time": "18:30", "className": "Strength & Stretch", "instructor": "Jennine", "durationMin": 55 },
+    { "dayOfWeek": 2, "time": "19:30", "className": "Guided Meditation", "instructor": "Les-Lee", "durationMin": 60, "note": "Specific dates only (e.g. July 7/14/21/28) - not weekly" },
+
+    { "dayOfWeek": 3, "time": "08:15", "className": "Spin", "instructor": "Breanne", "durationMin": 45 },
+    { "dayOfWeek": 3, "time": "09:15", "className": "Yin Yoga", "instructor": "Sheena", "durationMin": 55 },
+    { "dayOfWeek": 3, "time": "10:15", "className": "Pilates", "instructor": "Sheena", "durationMin": 45 },
+    { "dayOfWeek": 3, "time": "11:15", "className": "Speciality Class", "instructor": "TBA", "durationMin": 60, "preRegistration": true },
+    { "dayOfWeek": 3, "time": "17:30", "className": "Yoga", "instructor": "Kim", "durationMin": 55 },
+    { "dayOfWeek": 3, "time": "18:30", "className": "Zumba", "instructor": "Elizabeth", "durationMin": 60 },
+
+    { "dayOfWeek": 4, "time": "08:45", "className": "Pilates", "instructor": "Kim", "durationMin": 30 },
+    { "dayOfWeek": 4, "time": "09:20", "className": "Stronger", "instructor": "Kim", "durationMin": 45 },
+    { "dayOfWeek": 4, "time": "10:15", "className": "Yin Yoga For Hips", "instructor": "Sheena", "durationMin": 75 },
+    { "dayOfWeek": 4, "time": "16:25", "className": "Gentle Vinyasa Flow", "instructor": "Lisa N", "durationMin": 55 },
+    { "dayOfWeek": 4, "time": "17:30", "className": "Spin to the Beat", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 4, "time": "18:20", "className": "Pilates Sculpt", "instructor": "Lisa C", "durationMin": 40 },
+
+    { "dayOfWeek": 5, "time": "07:00", "className": "Yin Yoga", "instructor": "Sheena", "durationMin": 45 },
+    { "dayOfWeek": 5, "time": "08:00", "className": "Booty Core & More", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 5, "time": "09:00", "className": "Spin to the Beat", "instructor": "Lisa C", "durationMin": 45 },
+    { "dayOfWeek": 5, "time": "10:00", "className": "Zumba", "instructor": "Taylor", "durationMin": 55 },
+    { "dayOfWeek": 5, "time": "11:15", "className": "Speciality Class", "instructor": "TBA", "durationMin": 60, "preRegistration": true },
+
+    { "dayOfWeek": 6, "time": "09:00", "className": "Strength", "instructor": "Breanne", "durationMin": 55, "note": "Alternating Saturdays (e.g. July 11 & 25)" },
+    { "dayOfWeek": 6, "time": "10:00", "className": "Yin Yoga", "instructor": "Breanne", "durationMin": 55, "note": "Alternating Saturdays (e.g. July 11 & 25)" },
+    { "dayOfWeek": 6, "time": "09:00", "className": "Pilates Fusion", "instructor": "Jennine", "durationMin": 55, "note": "Alternating Saturdays (e.g. July 4 & 18)" },
+    { "dayOfWeek": 6, "time": "10:00", "className": "Vinyasa Flow Yoga", "instructor": "Jennine", "durationMin": 55, "note": "Alternating Saturdays (e.g. July 4 & 18)" }
+  ]
+}

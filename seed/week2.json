@@ -1,0 +1,1731 @@
+{
+  "programId": "uf-starter-nutrition",
+  "phaseId": "week-2",
+  "sequence": 2,
+  "durationDays": 7,
+  "verified": true,
+  "source": "Paper handout from Ultimate Fitness (member journey recording)",
+  "transcriptionNotes": [
+    "Transcribed from three clear close-up photos - full coverage, no ambiguous cells."
+  ],
+  "days": [
+    {
+      "day": 1,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "whole eggs",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 12,
+                "carbs": 1,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "rye bread",
+              "qty": 2,
+              "unit": "slice",
+              "macros": {
+                "protein": 5,
+                "carbs": 30,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "plain Greek yogurt",
+              "qty": 0.75,
+              "unit": "cup",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 17,
+                "carbs": 6,
+                "fat": 0.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "berries",
+              "qty": 1,
+              "unit": "cup",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 1,
+                "carbs": 15,
+                "fat": 0.5
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Replaces celery + peanut butter"
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chicken breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 53,
+                "carbs": 0,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "green vegetables",
+              "qty": 2,
+              "unit": "cup",
+              "macros": {
+                "protein": 4,
+                "carbs": 10,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "yams",
+              "qty": 3,
+              "unit": "oz",
+              "change": "added",
+              "macros": {
+                "protein": 1,
+                "carbs": 23,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chocolate protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 2
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "unsweetened almond milk",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "ice",
+              "qty": 1,
+              "unit": "cup"
+            },
+            {
+              "food": "instant coffee",
+              "qty": 1,
+              "unit": "tsp"
+            }
+          ],
+          "prep": "Blend (iced-cappuccino style)"
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "lean steak",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 49,
+                "carbs": 0,
+                "fat": 14
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "large green salad",
+              "qty": 1,
+              "unit": null
+            },
+            {
+              "food": "tomato",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            },
+            {
+              "food": "carrots",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "oats",
+              "qty": 0.5,
+              "unit": "cup",
+              "macros": {
+                "protein": 5,
+                "carbs": 27,
+                "fat": 3
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "chopped walnuts",
+              "qty": 2,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 2,
+                "carbs": 2,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cinnamon",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "unsweetened coconut milk",
+              "qty": null,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "cottage cheese",
+              "qty": 1,
+              "unit": "cup",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 25,
+                "carbs": 8,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "pear",
+              "qty": 1,
+              "unit": null,
+              "change": "swapped-in",
+              "macros": {
+                "protein": 1,
+                "carbs": 27,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cinnamon",
+              "qty": null,
+              "unit": null,
+              "change": "swapped-in"
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Replaces tuna salad snack"
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chicken breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 53,
+                "carbs": 0,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cucumber",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "lettuce",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "sprouts",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "fat-free Italian dressing",
+              "qty": 2,
+              "unit": "tbsp"
+            },
+            {
+              "food": "carrots",
+              "qty": 3,
+              "unit": "oz",
+              "change": "added",
+              "macros": {
+                "protein": 0.8,
+                "carbs": 8,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "mayo",
+              "qty": 2,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 20
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "Dijon mustard",
+              "qty": 1,
+              "unit": "tsp"
+            },
+            {
+              "food": "fresh dill",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "mixed vegetables to dip",
+              "qty": null,
+              "unit": null
+            }
+          ],
+          "prep": "Mix as a dip"
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chicken breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 53,
+                "carbs": 0,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "green beans",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "butter",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 11
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "squash",
+              "qty": 0.5,
+              "unit": "cup",
+              "change": "added",
+              "macros": {
+                "protein": 1,
+                "carbs": 11,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg whites",
+              "qty": 150,
+              "unit": "ml",
+              "macros": {
+                "protein": 16,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "spinach",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "salsa",
+              "qty": null,
+              "unit": null
+            }
+          ],
+          "prep": "Fry in a pan to make an omelet"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg whites",
+              "qty": 4,
+              "unit": null,
+              "macros": {
+                "protein": 14,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "spinach",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "salsa",
+              "qty": 2,
+              "unit": "tbsp"
+            },
+            {
+              "food": "rye toast",
+              "qty": 2,
+              "unit": "slice",
+              "macros": {
+                "protein": 5,
+                "carbs": 30,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "nut butter",
+              "qty": 2,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 7,
+                "carbs": 7,
+                "fat": 16
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "unsweetened coconut milk",
+              "qty": 2,
+              "unit": "cup",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 1,
+                "carbs": 2,
+                "fat": 9
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "berries",
+              "qty": 1,
+              "unit": "cup",
+              "change": "swapped-in",
+              "macros": {
+                "protein": 1,
+                "carbs": 15,
+                "fat": 0.5
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Replaces boiled-egg / pickle snack"
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chicken breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 53,
+                "carbs": 0,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "mini cucumber",
+              "qty": 1,
+              "unit": null
+            },
+            {
+              "food": "cracked pepper",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "fresh lime",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "mint",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "chick peas",
+              "qty": 0.5,
+              "unit": "cup",
+              "change": "added",
+              "macros": {
+                "protein": 7,
+                "carbs": 22,
+                "fat": 2
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "almonds",
+              "qty": 10,
+              "unit": null,
+              "macros": {
+                "protein": 2.5,
+                "carbs": 2,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "unsweetened almond milk",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "turkey breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 51,
+                "carbs": 0,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "broccoli",
+              "qty": 2,
+              "unit": "cup",
+              "macros": {
+                "protein": 5,
+                "carbs": 12,
+                "fat": 0.6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "yams",
+              "qty": 3,
+              "unit": "oz",
+              "change": "added",
+              "macros": {
+                "protein": 1,
+                "carbs": 23,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg whites",
+              "qty": 150,
+              "unit": "ml",
+              "macros": {
+                "protein": 16,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "salsa",
+              "qty": 2,
+              "unit": "tbsp"
+            }
+          ],
+          "prep": "Scrambled"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg cups (turkey bacon, egg, fresh herbs)",
+              "qty": "2-3",
+              "unit": null,
+              "macros": {
+                "protein": 18,
+                "carbs": 2,
+                "fat": 13
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "unsweetened almond milk",
+              "qty": 2,
+              "unit": "cup",
+              "macros": {
+                "protein": 2,
+                "carbs": 2,
+                "fat": 5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "nut butter",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 3.5,
+                "carbs": 3.5,
+                "fat": 8
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "prep": "Shake",
+          "changesFromPreviousPhase": [
+            "Same shake; nut butter now explicit"
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "turkey breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 51,
+                "carbs": 0,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "green onion",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "cucumber",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "fresh herbs",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "mayo",
+              "qty": 2,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 20
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "romaine lettuce (wraps)",
+              "qty": null,
+              "unit": null
+            }
+          ],
+          "prep": "Lettuce wraps"
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "dill pickles",
+              "qty": 2,
+              "unit": null
+            },
+            {
+              "food": "turkey bacon",
+              "qty": 3,
+              "unit": "slice",
+              "macros": {
+                "protein": 9,
+                "carbs": 1,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "salmon",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 43,
+                "carbs": 0,
+                "fat": 22
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "asparagus spears",
+              "qty": 10,
+              "unit": null
+            },
+            {
+              "food": "red peppers",
+              "qty": 0.5,
+              "unit": "cup",
+              "change": "added",
+              "macros": {
+                "protein": 0.5,
+                "carbs": 3,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "plain rice cake",
+              "qty": 1,
+              "unit": null,
+              "macros": {
+                "protein": 1,
+                "carbs": 7,
+                "fat": 0.3
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "peanut butter",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 3.5,
+                "carbs": 3.5,
+                "fat": 8
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg whites",
+              "qty": 4,
+              "unit": null,
+              "macros": {
+                "protein": 14,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "whole egg",
+              "qty": 1,
+              "unit": null,
+              "macros": {
+                "protein": 6,
+                "carbs": 0.5,
+                "fat": 5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "asparagus spears",
+              "qty": 4,
+              "unit": null
+            },
+            {
+              "food": "green onion",
+              "qty": 1,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "almonds",
+              "qty": 10,
+              "unit": null,
+              "macros": {
+                "protein": 2.5,
+                "carbs": 2,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "unsweetened coconut milk",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 0.5,
+                "carbs": 1,
+                "fat": 4.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "tuna",
+              "qty": 1,
+              "unit": "can",
+              "macros": {
+                "protein": 26,
+                "carbs": 0,
+                "fat": 2
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "mayo",
+              "qty": 2,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 20
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "green onion",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "dill pickle",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "fresh dill",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "hot mustard",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "romaine lettuce (wraps)",
+              "qty": null,
+              "unit": null
+            }
+          ],
+          "prep": "Lettuce wraps"
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "boiled eggs",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 12,
+                "carbs": 1,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cucumber slices",
+              "qty": null,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "chicken breast",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 53,
+                "carbs": 0,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "bok choy",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "green onions",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "peppers",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            },
+            {
+              "food": "snap peas",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            }
+          ],
+          "prep": "Stir fry",
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)",
+            "Chicken bouillon no longer listed on week-2 sheet"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "hard boiled eggs",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 12,
+                "carbs": 1,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "salsa",
+              "qty": 2,
+              "unit": "tbsp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "oats",
+              "qty": 0.5,
+              "unit": "cup",
+              "macros": {
+                "protein": 5,
+                "carbs": 27,
+                "fat": 3
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "eggs",
+              "qty": 3,
+              "unit": null,
+              "macros": {
+                "protein": 19,
+                "carbs": 1,
+                "fat": 15
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cinnamon",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "baking soda",
+              "qty": 0.5,
+              "unit": "tsp"
+            },
+            {
+              "food": "Splenda",
+              "qty": 1,
+              "unit": "tsp"
+            }
+          ],
+          "prep": "Pancake"
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "egg whites",
+              "qty": 150,
+              "unit": "ml",
+              "macros": {
+                "protein": 16,
+                "carbs": 1,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "salsa",
+              "qty": 2,
+              "unit": "tbsp"
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "tuna",
+              "qty": 0.5,
+              "unit": "can",
+              "macros": {
+                "protein": 13,
+                "carbs": 0,
+                "fat": 1
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "egg whites",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 7,
+                "carbs": 0.5,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "fresh herbs",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "salsa",
+              "qty": 2,
+              "unit": "tbsp"
+            }
+          ],
+          "prep": "Fry into a patty"
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "turkey bacon, chopped fine",
+              "qty": 3,
+              "unit": "slice",
+              "macros": {
+                "protein": 9,
+                "carbs": 1,
+                "fat": 6
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "mayo",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "sliced cucumbers",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "celery to dip",
+              "qty": null,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "lean beef",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 49,
+                "carbs": 0,
+                "fat": 14
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "kale",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "bean sprouts",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "red peppers",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            }
+          ],
+          "prep": "Stir fry",
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)",
+            "Beef bouillon no longer listed on week-2 sheet"
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "nut butter",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 3.5,
+                "carbs": 3.5,
+                "fat": 8
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "almond milk",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "prep": "Mix as a shake"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "meals": [
+        {
+          "slot": 1,
+          "label": "Breakfast",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "oats",
+              "qty": 0.5,
+              "unit": "cup",
+              "macros": {
+                "protein": 5,
+                "carbs": 27,
+                "fat": 3
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "ground flax",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 1.5,
+                "carbs": 2,
+                "fat": 4
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "hemp hearts",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 3,
+                "carbs": 1,
+                "fat": 5
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "chia seeds",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 2,
+                "carbs": 5,
+                "fat": 4
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "unsweetened almond milk",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 2.5
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "prep": "Overnight oats"
+        },
+        {
+          "slot": 2,
+          "label": "Morning snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "tuna",
+              "qty": 0.5,
+              "unit": "can",
+              "macros": {
+                "protein": 13,
+                "carbs": 0,
+                "fat": 1
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "egg whites",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 7,
+                "carbs": 0.5,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "prep": "Mix with spices and fry as a patty"
+        },
+        {
+          "slot": 3,
+          "label": "Lunch",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "cooked ground turkey",
+              "qty": 1,
+              "unit": "cup",
+              "macros": {
+                "protein": 38,
+                "carbs": 0,
+                "fat": 12
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "broccoli",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "red peppers",
+              "qty": null,
+              "unit": null,
+              "change": "added"
+            },
+            {
+              "food": "rice",
+              "qty": 0.5,
+              "unit": "cup",
+              "change": "added",
+              "macros": {
+                "protein": 2,
+                "carbs": 22,
+                "fat": 0
+              },
+              "macrosEstimated": true
+            }
+          ],
+          "prep": "Stir fried",
+          "changesFromPreviousPhase": [
+            "Added (shown in red on sheet)",
+            "Toasted almonds no longer listed on week-2 sheet"
+          ]
+        },
+        {
+          "slot": 4,
+          "label": "Afternoon snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "boiled eggs",
+              "qty": 2,
+              "unit": null,
+              "macros": {
+                "protein": 12,
+                "carbs": 1,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "green onion",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "celery",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "fresh chopped parsley",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "mayo",
+              "qty": 1,
+              "unit": "tbsp",
+              "macros": {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 10
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "cracked pepper",
+              "qty": null,
+              "unit": null
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "label": "Dinner",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "white fish",
+              "qty": 6,
+              "unit": "oz",
+              "change": "increased",
+              "macros": {
+                "protein": 39,
+                "carbs": 0,
+                "fat": 2
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "lemon",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "salt",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "pepper",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "tarragon",
+              "qty": null,
+              "unit": null
+            },
+            {
+              "food": "brussels sprouts",
+              "qty": 2,
+              "unit": "cup",
+              "macros": {
+                "protein": 6,
+                "carbs": 16,
+                "fat": 0.6
+              },
+              "macrosEstimated": true
+            }
+          ]
+        },
+        {
+          "slot": 6,
+          "label": "Evening snack",
+          "labelAssumed": true,
+          "items": [
+            {
+              "food": "almonds",
+              "qty": 5,
+              "unit": null,
+              "macros": {
+                "protein": 1,
+                "carbs": 1,
+                "fat": 3
+              },
+              "macrosEstimated": true
+            },
+            {
+              "food": "protein",
+              "qty": 1,
+              "unit": "scoop",
+              "macros": {
+                "protein": 24,
+                "carbs": 3,
+                "fat": 1.5
+              },
+              "macrosEstimated": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

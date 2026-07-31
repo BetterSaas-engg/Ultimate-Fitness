@@ -1,0 +1,47 @@
+{
+  "_conventions": {
+    "goals": "Order here is the order shown on the onboarding goal screen.",
+    "available": "false renders the goal as 'Coming soon' and makes it non-selectable. Unlocking a goal later is a data change, not a code change.",
+    "programs": "Index of every program in seed/. The app resolves content by (goalType, type, tier)."
+  },
+  "goals": [
+    {
+      "goalType": "stay-healthy",
+      "label": "Stay healthy",
+      "blurb": "Build a habit that sticks. Move a few times a week and eat like a grown-up.",
+      "available": true
+    },
+    {
+      "goalType": "fat-loss",
+      "label": "Fat loss",
+      "blurb": "Lean out steadily without living in the gym.",
+      "available": false
+    },
+    {
+      "goalType": "super-fit",
+      "label": "Get super fit",
+      "blurb": "Push conditioning and strength well past the basics.",
+      "available": false
+    },
+    {
+      "goalType": "athlete",
+      "label": "Train like an athlete",
+      "blurb": "Sport-specific power, speed and recovery work.",
+      "available": false
+    }
+  ],
+  "programs": [
+    {
+      "id": "uf-starter-nutrition",
+      "type": "nutrition",
+      "goalType": "stay-healthy",
+      "tier": "premium"
+    },
+    {
+      "id": "uf-starter-workout",
+      "type": "workout",
+      "goalType": "stay-healthy",
+      "tier": "free"
+    }
+  ]
+}

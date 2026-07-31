@@ -1,0 +1,251 @@
+{
+  "_conventions": {
+    "purpose": "Swap groups. A member can replace any item whose foodId is in the same group.",
+    "serving": "Each member carries its OWN serving size and its OWN macros at that serving. Macros are never derived from the food being replaced - otherwise the swap delta would be circular and meaningless.",
+    "protein": "Groups are built to hold protein roughly constant. The plant options do not fully match - 1.5 cups of lentils is ~27g against chicken's ~44g. The app shows that gap honestly rather than hiding it; the nutritionist sets the final servings.",
+    "lookup": "One group per foodId. A foodId must not appear in two groups.",
+    "status": "placeholder - EVERY group and serving is pending nutritionist approval"
+  },
+
+  "groups": [
+    {
+      "groupId": "lean-proteins",
+      "label": "Lean proteins",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "poultry-chicken-breast",
+          "label": "chicken breast",
+          "serving": { "qty": 5, "unit": "oz" },
+          "macros": { "protein": 44, "carbs": 0, "fat": 5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "poultry-turkey-breast",
+          "label": "turkey breast",
+          "serving": { "qty": 5, "unit": "oz" },
+          "macros": { "protein": 42, "carbs": 0, "fat": 2 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "poultry-ground-turkey",
+          "label": "cooked ground turkey",
+          "serving": { "qty": 1, "unit": "cup" },
+          "macros": { "protein": 38, "carbs": 0, "fat": 12 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "beef-lean-steak",
+          "label": "lean steak",
+          "serving": { "qty": 5, "unit": "oz" },
+          "macros": { "protein": 41, "carbs": 0, "fat": 11 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "legume-lentils",
+          "label": "cooked lentils",
+          "serving": { "qty": 1.5, "unit": "cup" },
+          "macros": { "protein": 27, "carbs": 60, "fat": 1 },
+          "macrosEstimated": true,
+          "note": "Plant option. Noticeably lower protein and much higher carbs than the meats in this group."
+        }
+      ]
+    },
+
+    {
+      "groupId": "white-fish-and-tuna",
+      "label": "Fish",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "fish-white",
+          "label": "white fish",
+          "serving": { "qty": 5, "unit": "oz" },
+          "macros": { "protein": 33, "carbs": 0, "fat": 1.5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "fish-salmon",
+          "label": "salmon",
+          "serving": { "qty": 5, "unit": "oz" },
+          "macros": { "protein": 36, "carbs": 0, "fat": 18 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "fish-tuna-canned",
+          "label": "tuna",
+          "serving": { "qty": 1, "unit": "can" },
+          "macros": { "protein": 26, "carbs": 0, "fat": 2 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "eggs",
+      "label": "Eggs",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "egg-whole",
+          "label": "whole eggs",
+          "serving": { "qty": 2, "unit": null },
+          "macros": { "protein": 12, "carbs": 1, "fat": 10 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "egg-whole-boiled",
+          "label": "boiled eggs",
+          "serving": { "qty": 2, "unit": null },
+          "macros": { "protein": 12, "carbs": 1, "fat": 10 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "egg-white",
+          "label": "egg whites",
+          "serving": { "qty": 150, "unit": "ml" },
+          "macros": { "protein": 16, "carbs": 1, "fat": 0 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "breads",
+      "label": "Breads",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "grain-rye-bread",
+          "label": "rye bread",
+          "serving": { "qty": 2, "unit": "slice" },
+          "macros": { "protein": 5, "carbs": 30, "fat": 1.5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "grain-rice-cake",
+          "label": "plain rice cakes",
+          "serving": { "qty": 3, "unit": null },
+          "macros": { "protein": 2, "carbs": 21, "fat": 1 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "grain-rice",
+          "label": "cooked rice",
+          "serving": { "qty": 0.75, "unit": "cup" },
+          "macros": { "protein": 3, "carbs": 33, "fat": 0 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "oats-and-starches",
+      "label": "Oats and starches",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "grain-oats",
+          "label": "oats",
+          "serving": { "qty": 0.5, "unit": "cup" },
+          "macros": { "protein": 5, "carbs": 27, "fat": 3 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "starch-yam",
+          "label": "yams",
+          "serving": { "qty": 3.5, "unit": "oz" },
+          "macros": { "protein": 1, "carbs": 27, "fat": 0 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "starch-squash",
+          "label": "squash",
+          "serving": { "qty": 1.25, "unit": "cup" },
+          "macros": { "protein": 2, "carbs": 27, "fat": 0 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "unsweetened-milks",
+      "label": "Unsweetened milks",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "milk-almond-unsweetened",
+          "label": "unsweetened almond milk",
+          "serving": { "qty": 1, "unit": "cup" },
+          "macros": { "protein": 1, "carbs": 1, "fat": 2.5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "milk-coconut-unsweetened",
+          "label": "unsweetened coconut milk",
+          "serving": { "qty": 1, "unit": "cup" },
+          "macros": { "protein": 0.5, "carbs": 1, "fat": 4.5 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "nut-butters",
+      "label": "Nut butters and nuts",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "fat-nut-butter",
+          "label": "nut butter",
+          "serving": { "qty": 1, "unit": "tbsp" },
+          "macros": { "protein": 3.5, "carbs": 3.5, "fat": 8 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "nut-almonds",
+          "label": "almonds",
+          "serving": { "qty": 14, "unit": null },
+          "macros": { "protein": 3.5, "carbs": 3, "fat": 8.5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "nut-walnuts",
+          "label": "chopped walnuts",
+          "serving": { "qty": 1.5, "unit": "tbsp" },
+          "macros": { "protein": 1.5, "carbs": 1.5, "fat": 7.5 },
+          "macrosEstimated": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "plant-proteins",
+      "label": "Plant proteins",
+      "placeholder": true,
+      "members": [
+        {
+          "foodId": "legume-chickpeas",
+          "label": "chick peas",
+          "serving": { "qty": 0.5, "unit": "cup" },
+          "macros": { "protein": 7, "carbs": 22, "fat": 2 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "legume-black-beans",
+          "label": "black beans",
+          "serving": { "qty": 0.5, "unit": "cup" },
+          "macros": { "protein": 8, "carbs": 20, "fat": 0.5 },
+          "macrosEstimated": true
+        },
+        {
+          "foodId": "soy-tofu-firm",
+          "label": "firm tofu",
+          "serving": { "qty": 4, "unit": "oz" },
+          "macros": { "protein": 10, "carbs": 3, "fat": 6 },
+          "macrosEstimated": true
+        }
+      ]
+    }
+  ]
+}

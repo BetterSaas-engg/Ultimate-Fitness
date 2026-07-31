@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Ultimate Fitness",
+    "slug": "uf-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "ufapp",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
