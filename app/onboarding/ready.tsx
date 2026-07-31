@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
 import { ProteinTargetStepper } from '@/components/ProteinTargetStepper';
+import { Logo } from '@/components/BrandHeader';
 import { WORKOUT_PROGRAM } from '@/data/programs';
 import { formatDateLong, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
@@ -26,6 +27,9 @@ export default function ReadyScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.logoWrap}>
+          <Logo width={190} />
+        </View>
         <Text style={styles.kicker}>YOUR FIRST 90 DAYS</Text>
         <Text style={type.h1}>Here's the plan</Text>
 
@@ -87,6 +91,7 @@ function Step({ n, title, body }: { n: string; title: string; body: string }) {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.xl, paddingBottom: space.xxl },
+  logoWrap: { marginBottom: space.xl },
   kicker: {
     fontSize: 11,
     fontWeight: '800',
@@ -123,6 +128,6 @@ const styles = StyleSheet.create({
     paddingVertical: space.lg,
     alignItems: 'center',
   },
-  ctaText: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  ctaText: { color: colors.onAccent, fontWeight: '700', fontSize: 16 },
   footnote: { ...type.tiny, marginTop: space.md, textAlign: 'center' },
 });

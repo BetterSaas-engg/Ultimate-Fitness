@@ -54,5 +54,5 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     alignItems: 'center',
   },
-  ctaText: { color: '#221B03', fontWeight: '700', fontSize: 15 },
+  ctaText: { color: colors.onPremium, fontWeight: '700', fontSize: 15 },
 });

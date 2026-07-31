@@ -84,6 +84,12 @@ export interface MealItem {
   macros?: Macros;
   /** Always true today - a reference approximation, not nutritionist-verified. */
   macrosEstimated?: boolean;
+  /**
+   * Set by the admin overlay when an edit changed the food or the serving, so
+   * the seed's macros no longer describe what's on the plate. Shows as "macros
+   * need re-checking" rather than a stale number.
+   */
+  macrosInvalidated?: boolean;
   /** Escape hatch: overrides the alias table for this item only. */
   foodId?: string;
 }

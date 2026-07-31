@@ -8,6 +8,7 @@ import { WorkoutCard } from '@/components/WorkoutCard';
 import { ClassRow } from '@/components/ClassRow';
 import { UpsellCard } from '@/components/UpsellCard';
 import { Section } from '@/components/Section';
+import { BrandHeader } from '@/components/BrandHeader';
 import { ProteinBar } from '@/components/ProteinBar';
 
 import { classesOn } from '@/data/classes';
@@ -19,6 +20,8 @@ import { NUTRITION_PROGRAM } from '@/data/programs';
 import { mealEntryId, useLog, WORKOUT_ENTRY } from '@/store/useLog';
 import { useProfile, DEFAULT_PROTEIN_TARGET_G } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
+import { useAdminEdits } from '@/store/useAdminEdits';
+import { applyNutritionDayEdits, applySessionEdits, itemIsEstimated, phaseStillPlaceholder } from '@/data/adminOverlay';
 import { anyEstimated, loggedMacros, plannedMacros } from '@/lib/macros';
 import { addDays, dayOfWeekOf, formatDateLong, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
@@ -36,6 +39,7 @@ export default function TodayScreen() {
   );
 
   const { substitutions, substitute, restore } = useSubstitutions(dateKey);
+  const { edits } = useAdminEdits();
 
   if (loading || !profile) {
     return (
@@ -46,8 +50,18 @@ export default function TodayScreen() {
   }
 
   const programDay = programDayIndex(profile.startDate, dateKey);
-  const workout = getWorkoutForDay(programDay);
-  const nutrition = getNutritionForDay(programDay);
+  const rawWorkout = getWorkoutForDay(programDay);
+  const rawNutrition = getNutritionForDay(programDay);
+
+  // Admin edits overlay the seed here, so a nutritionist's change is on this
+  // screen the moment you switch role - no reload, no seed mutation.
+  const workout =
+    rawWorkout && rawWorkout.session
+      ? { ...rawWorkout, session: applySessionEdits(rawWorkout.session, rawWorkout.phase.phaseId, edits) }
+      : rawWorkout;
+  const nutrition = rawNutrition
+    ? { ...rawNutrition, day: applyNutritionDayEdits(rawNutrition.day, rawNutrition.phase.phaseId, edits) }
+    : rawNutrition;
   const todaysClasses = classesOn(dayOfWeekOf(dateKey));
 
   const nutritionUnlocked = tierAllows(profile.tier, NUTRITION_PROGRAM.tier);
@@ -74,8 +88,8 @@ export default function TodayScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
+      <BrandHeader right={`Day ${programDay}`} />
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.kicker}>DAY {programDay}</Text>
         <Text style={type.h1}>{formatDateLong(dateKey)}</Text>
         {(workout?.beyondProgram || nutrition?.beyondProgram) && (
           <Text style={styles.beyond}>
@@ -89,7 +103,7 @@ export default function TodayScreen() {
               logged={eaten.protein}
               planned={planned.protein}
               target={proteinTarget}
-              estimated={anyEstimated(visibleMeals, substitutions)}
+              estimated={visibleMeals.some((m) => m.items.some((i) => itemIsEstimated(i, edits)))}
             />
           </View>
         )}
@@ -178,7 +192,6 @@ export default function TodayScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.xl, paddingBottom: space.xxl },
-  kicker: { fontSize: 11, fontWeight: '800', color: colors.accent, letterSpacing: 1.2 },
   beyond: { ...type.small, color: colors.increased, marginTop: space.sm },
   locked: {
     backgroundColor: colors.surface,

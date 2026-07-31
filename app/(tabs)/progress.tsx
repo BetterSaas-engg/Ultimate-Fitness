@@ -6,10 +6,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Section } from '@/components/Section';
 import { UpsellCard } from '@/components/UpsellCard';
 import { ProteinTargetStepper } from '@/components/ProteinTargetStepper';
+import { BrandHeader } from '@/components/BrandHeader';
 
 import { useLog } from '@/store/useLog';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
+import { useAdminEdits } from '@/store/useAdminEdits';
+import { ROLES } from '@/types/admin';
 import { useStreak } from '@/store/useStreak';
 import { addDays, daysBetween, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
@@ -22,11 +25,13 @@ export default function ProgressScreen() {
 
   const dateKey = addDays(todayKey(), profile?.demoDayOffset ?? 0);
   const { clearAll: clearSubs } = useSubstitutions(dateKey);
+  const { revertAll: revertAdminEdits } = useAdminEdits();
   const { streak, activeDays } = useStreak(log, dateKey);
   const programDay = profile ? programDayIndex(profile.startDate, dateKey) : 1;
 
   return (
     <SafeAreaView style={styles.safe}>
+      <BrandHeader />
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={type.h1}>Progress</Text>
 
@@ -52,6 +57,32 @@ export default function ProgressScreen() {
               value={profile?.proteinTargetG ?? DEFAULT_PROTEIN_TARGET_G}
               onChange={(v) => update({ proteinTargetG: v })}
             />
+          </View>
+        </Section>
+
+        <Section
+          title="Demo mode"
+          subtitle="No login behind this — role switching exists for this preview only"
+        >
+          <View style={styles.roleCard}>
+            {ROLES.map((r) => {
+              const active = (profile?.role ?? 'member') === r.role;
+              return (
+                <Pressable
+                  key={r.role}
+                  onPress={() => update({ role: r.role })}
+                  accessibilityRole="radio"
+                  accessibilityState={{ selected: active }}
+                  style={[styles.role, active && styles.roleOn]}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text style={[type.body, active && { fontWeight: '700' }]}>{r.label}</Text>
+                    <Text style={type.tiny}>{r.blurb}</Text>
+                  </View>
+                  {active ? <Text style={styles.roleMark}>●</Text> : null}
+                </Pressable>
+              );
+            })}
           </View>
         </Section>
 
@@ -111,6 +142,7 @@ export default function ProgressScreen() {
               <Pressable
                 onPress={async () => {
                   await clearSubs();
+                  await revertAdminEdits();
                   await clear();
                   await reset();
                   router.replace('/onboarding/goal');
@@ -153,6 +185,24 @@ const styles = StyleSheet.create({
   statLabel: { ...type.tiny, marginTop: 2, textAlign: 'center' },
   nudge: { ...type.small, color: colors.text, marginTop: space.lg, lineHeight: 20 },
 
+  roleCard: {
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.lg,
+    padding: space.sm,
+    gap: 2,
+  },
+  role: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.md,
+    paddingHorizontal: space.md,
+    paddingVertical: space.md,
+    borderRadius: radius.md,
+  },
+  roleOn: { backgroundColor: colors.surfaceAlt },
+  roleMark: { color: colors.accent, fontSize: 12 },
   targetCard: {
     backgroundColor: colors.surface,
     borderWidth: 1,
@@ -192,7 +242,7 @@ const styles = StyleSheet.create({
   },
   jumpOn: { backgroundColor: colors.accent, borderColor: colors.accent },
   jumpText: { ...type.small, fontWeight: '700' },
-  jumpTextOn: { color: '#fff' },
+  jumpTextOn: { color: colors.onAccent },
   reset: {
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.border,

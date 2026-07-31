@@ -6,6 +6,7 @@ import { MealCard } from '@/components/MealCard';
 import { ClassRow } from '@/components/ClassRow';
 import { WhatsNewPanel } from '@/components/WhatsNewPanel';
 import { PlaceholderBadge } from '@/components/PlaceholderBadge';
+import { BrandHeader } from '@/components/BrandHeader';
 
 import { NUTRITION_PHASES, NUTRITION_PROGRAM, WORKOUT_PHASES, WORKOUT_PROGRAM } from '@/data/programs';
 import { diffPhases } from '@/data/changes';
@@ -20,6 +21,7 @@ export default function PlanScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
+      <BrandHeader />
       <View style={styles.header}>
         <Text style={type.h1}>The plan</Text>
         <View style={styles.segments}>
@@ -222,7 +224,7 @@ const styles = StyleSheet.create({
   },
   weekOn: { backgroundColor: colors.accent, borderColor: colors.accent },
   weekText: { ...type.small, fontWeight: '700' },
-  weekTextOn: { color: '#fff' },
+  weekTextOn: { color: colors.onAccent },
 
   unverified: { ...type.small, color: colors.increased, marginBottom: space.lg, lineHeight: 18 },
 

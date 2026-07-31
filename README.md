@@ -27,7 +27,9 @@ Run through this before standing in front of the gym owner.
 4. **Walk the flow**: goal → physique → protein target → Today → log a meal → Replace an item →
    Progress. Then Demo controls → jump to day 8 for the week-2 progression, and toggle
    Nutrition Coaching to show locked vs unlocked.
-5. **Check the day** the demo falls on. Classes come from the real weekday, so a Sunday demo shows
+5. **The admin beat**: Progress → Demo mode → Nutritionist → open week 2, day 1 → change an item →
+   switch back to Member → it's on Today. Reset with *Revert everything* on the Admin hub.
+6. **Check the day** the demo falls on. Classes come from the real weekday, so a Sunday demo shows
    Sunday's four classes, not Tuesday's Zumba.
 
 ## What it does
@@ -139,6 +141,37 @@ next to a different food would be a lie.
 
 Full macro-target meal planning is explicitly out of scope — v1, nutritionist-configured.
 
+## Admin sides (demo only)
+
+**There is no auth.** The role picker lives on Progress → *Demo mode*, and every admin screen
+carries a persistent bar saying so. The Admin tab is hidden entirely for the member role, so the
+member experience is untouched.
+
+**Trainer** — workout phases → sessions (rename) → exercises (name / sets / reps, plus a
+*content is real* toggle per exercise).
+
+**Nutritionist** — her programs → a day's meals (edit any item's food / qty / unit); a macro review
+queue; and a swap-group approve/reject screen.
+
+Admin edits are an **overlay**, exactly like member substitutions — same pattern, same guarantee:
+the seed is never mutated, so *Revert everything* restores the gym's content exactly. Member
+screens read the same store, which is what makes the demo beat work: the nutritionist edits an
+item, you switch role, and it's on Today with no reload.
+
+Four rules worth knowing:
+
+- **Editing a food or serving drops that item's macros** rather than keeping a stale number. The
+  seed's values were measured for the original food at the original amount; once either changes
+  they describe something else. The item shows *macros need re-checking*.
+- **The placeholder banner is all-or-nothing.** It clears only when *every* exercise in a phase is
+  confirmed real — a per-exercise dismissal would let the banner vanish while stand-in programming
+  is still on screen.
+- **Macro approval is per food + serving, not per occurrence.** "protein, 1 scoop" appears 15 times;
+  approving each separately would be 165 toggles. Grouping brings it to **65**. Approving clears the
+  *estimated values* caption on the member's protein bar.
+- **Rejecting a swap group hides its Replace button** for members. Pending groups still work but
+  stay flagged as awaiting approval.
+
 ## Layout
 
 ```
@@ -151,9 +184,10 @@ seed/                     content, as given by the gym — source of truth
   food-aliases.json       food string -> foodId (PLACEHOLDER, needs review)
   substitutions.json      8 swap groups (PLACEHOLDER, needs approval)
 app/                      routes only; screens stay thin
+  admin/                  trainer + nutritionist screens (demo, no auth)
 src/data/                 loads + resolves seed content
 src/lib/                  date + macro arithmetic
-src/store/                profile, log, streak, substitutions (AsyncStorage)
+src/store/                profile, log, streak, substitutions, admin edits
 src/components/           presentational
 scripts/                  populate-macros, food-coverage
 ```

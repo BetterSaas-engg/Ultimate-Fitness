@@ -4,6 +4,7 @@ import type { Meal, MealItem } from '@/types/program';
 import type { DiffItem, MealDiff } from '@/data/changes';
 import { formatIncrease } from '@/data/changes';
 import { optionsForItem } from '@/data/substitutions';
+import { useAdminEdits } from '@/store/useAdminEdits';
 import {
   formatDelta,
   formatServing,
@@ -123,10 +124,11 @@ function ItemRow({
   onRestore?: (slot: number, itemIndex: number) => void;
 }) {
   const [picking, setPicking] = useState(false);
+  const { edits } = useAdminEdits();
 
   const resolved = resolveItem(item, substituteFoodId);
   const swapped = Boolean(resolved.substitute);
-  const hasOptions = canSubstitute && optionsForItem(item).length > 0;
+  const hasOptions = canSubstitute && optionsForItem(item, edits).length > 0;
 
   // The change badge describes the ORIGINAL food. Once an item is swapped,
   // "5 oz → 6 oz" alongside a different food would be a lie, so it steps aside
@@ -241,5 +243,5 @@ const styles = StyleSheet.create({
   },
   checkOn: { backgroundColor: colors.added, borderColor: colors.added },
   checkMark: { color: colors.textMuted, fontSize: 16, fontWeight: '700' },
-  checkMarkOn: { color: '#06210F' },
+  checkMarkOn: { color: colors.onAccent },
 });

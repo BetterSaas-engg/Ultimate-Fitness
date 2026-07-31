@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Text, type ColorValue } from 'react-native';
+import { useProfile } from '@/store/useProfile';
 import { colors } from '@/theme';
 
 function Icon({ glyph, color }: { glyph: string; color: ColorValue }) {
@@ -7,6 +8,10 @@ function Icon({ glyph, color }: { glyph: string; color: ColorValue }) {
 }
 
 export default function TabsLayout() {
+  const { profile } = useProfile();
+  // Admin is hidden entirely for members - the member experience is untouched.
+  const showAdmin = (profile?.role ?? 'member') !== 'member';
+
   return (
     <Tabs
       screenOptions={{
@@ -39,6 +44,14 @@ export default function TabsLayout() {
         options={{
           title: 'Progress',
           tabBarIcon: ({ color }) => <Icon glyph="▲" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: 'Admin',
+          href: showAdmin ? undefined : null,
+          tabBarIcon: ({ color }) => <Icon glyph="✎" color={color} />,
         }}
       />
     </Tabs>

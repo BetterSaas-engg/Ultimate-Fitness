@@ -2,6 +2,8 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 import type { MealItem } from '@/types/program';
 import type { SubstitutionMember } from '@/types/substitutions';
 import { optionsForItem, groupForFoodId } from '@/data/substitutions';
+import { swapGroupStatus } from '@/data/adminOverlay';
+import { useAdminEdits } from '@/store/useAdminEdits';
 import { foodIdOf } from '@/data/foods';
 import { formatDelta, formatServing, roundMacros, subtractMacros } from '@/lib/macros';
 import { colors, radius, space, type } from '@/theme';
@@ -26,8 +28,10 @@ export function SubstituteSheet({
   onRestore: () => void;
   onClose: () => void;
 }) {
-  const options = optionsForItem(item);
+  const { edits } = useAdminEdits();
+  const options = optionsForItem(item, edits);
   const group = groupForFoodId(foodIdOf(item));
+  const approved = group ? swapGroupStatus(group.groupId, edits) === 'approved' : false;
 
   return (
     <Modal visible={visible} animationType="fade" transparent onRequestClose={onClose}>
@@ -36,7 +40,8 @@ export function SubstituteSheet({
           <Text style={styles.title}>Replace {item.food}</Text>
           <Text style={styles.sub}>
             {group?.label}
-            {group?.placeholder ? ' · pending nutritionist approval' : ''}
+            {group?.placeholder && !approved ? ' · pending nutritionist approval' : ''}
+            {approved ? ' · approved' : ''}
           </Text>
 
           <ScrollView style={{ marginTop: space.lg }}>

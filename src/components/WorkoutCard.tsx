@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { WorkoutToday } from '@/data/programs';
 import { PlaceholderBadge } from './PlaceholderBadge';
+import { phaseStillPlaceholder } from '@/data/adminOverlay';
+import { useAdminEdits } from '@/store/useAdminEdits';
 import { colors, radius, space, type } from '@/theme';
 
 interface Props {
@@ -10,6 +12,7 @@ interface Props {
 }
 
 export function WorkoutCard({ today, logged, onToggle }: Props) {
+  const { edits } = useAdminEdits();
   // Rest is a real state, not an empty screen. A beginner who opens the app and
   // sees nothing assumes it's broken.
   if (today.kind === 'rest') {
@@ -25,7 +28,7 @@ export function WorkoutCard({ today, logged, onToggle }: Props) {
   }
 
   const session = today.session!;
-  const isPlaceholder = today.phase.contentStatus === 'placeholder';
+  const isPlaceholder = phaseStillPlaceholder(today.phase, edits);
 
   return (
     <View style={styles.card}>
@@ -106,5 +109,5 @@ const styles = StyleSheet.create({
   },
   checkOn: { backgroundColor: colors.added, borderColor: colors.added },
   checkMark: { color: colors.textMuted, fontSize: 16, fontWeight: '700' },
-  checkMarkOn: { color: '#06210F' },
+  checkMarkOn: { color: colors.onAccent },
 });

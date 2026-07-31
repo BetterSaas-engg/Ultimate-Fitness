@@ -1,6 +1,8 @@
 import subsJson from '@seed/substitutions.json';
 import type { SubstitutionGroup, SubstitutionMember } from '@/types/substitutions';
 import { foodIdOf } from './foods';
+import type { AdminEdits } from '@/types/admin';
+import { swapGroupUsable } from './adminOverlay';
 
 export const SUBSTITUTION_GROUPS: SubstitutionGroup[] = (
   subsJson as unknown as { groups: SubstitutionGroup[] }
@@ -30,10 +32,15 @@ export function memberById(foodId: string): SubstitutionMember | undefined {
  * the food is unmapped or has no group - the Replace affordance then hides
  * rather than offering an empty list.
  */
-export function optionsForItem(item: { food: string; foodId?: string }): SubstitutionMember[] {
+export function optionsForItem(
+  item: { food: string; foodId?: string },
+  edits?: AdminEdits
+): SubstitutionMember[] {
   const id = foodIdOf(item);
   const group = groupForFoodId(id);
   if (!group) return [];
+  // A group the nutritionist rejected stops being offered at all.
+  if (edits && !swapGroupUsable(group.groupId, edits)) return [];
   return group.members.filter((m) => m.foodId !== id);
 }
 

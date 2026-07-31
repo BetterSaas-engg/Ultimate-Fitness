@@ -2,6 +2,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GOALS } from '@/data/catalog';
+import { Logo } from '@/components/BrandHeader';
 import { useProfile } from '@/store/useProfile';
 import { colors, radius, space, type } from '@/theme';
 
@@ -17,7 +18,9 @@ export default function GoalScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.kicker}>ULTIMATE FITNESS</Text>
+        <View style={styles.logoWrap}>
+          <Logo width={190} />
+        </View>
         <Text style={type.h1}>What are you here for?</Text>
         <Text style={styles.sub}>
           Pick the one that sounds most like you. You can change it later.
@@ -64,13 +67,7 @@ export default function GoalScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.xl, paddingBottom: space.xxl },
-  kicker: {
-    fontSize: 11,
-    fontWeight: '800',
-    color: colors.accent,
-    letterSpacing: 1.2,
-    marginBottom: space.sm,
-  },
+  logoWrap: { marginBottom: space.xl },
   sub: { ...type.small, marginTop: space.sm, lineHeight: 20 },
   list: { marginTop: space.xl, gap: space.md },
   goal: {

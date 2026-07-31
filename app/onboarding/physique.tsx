@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ctaOff: { backgroundColor: colors.surfaceAlt },
-  ctaText: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  ctaText: { color: colors.onAccent, fontWeight: '700', fontSize: 16 },
   footnote: { ...type.tiny, marginTop: space.lg, lineHeight: 16 },
 });

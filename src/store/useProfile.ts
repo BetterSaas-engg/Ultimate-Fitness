@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { GoalType, Tier } from '@/types/program';
+import type { Role } from '@/types/admin';
 import { todayKey } from '@/lib/date';
 
 const KEY = 'uf.profile.v1';
@@ -15,6 +16,8 @@ export interface Profile {
   physiqueCurrent?: number;
   physiqueTarget?: number;
   tier: Tier;
+  /** Demo only - no auth behind this. Gates the Admin tab. */
+  role?: Role;
   /** Grams per day. Drives the Today protein bar. */
   proteinTargetG?: number;
   /** YYYY-MM-DD. Program day 1. */
@@ -27,6 +30,7 @@ export interface Profile {
 export const DEFAULT_PROFILE: Profile = {
   goalType: 'stay-healthy',
   tier: 'free',
+  role: 'member',
   proteinTargetG: DEFAULT_PROTEIN_TARGET_G,
   startDate: todayKey(),
 };
