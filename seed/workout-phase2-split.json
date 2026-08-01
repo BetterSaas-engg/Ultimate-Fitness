@@ -18,10 +18,52 @@
       "label": "Lower",
       "labelAssumed": false,
       "exercises": [
-        { "name": "Back squat", "sets": 4, "reps": "6-8", "placeholder": true },
-        { "name": "Romanian deadlift", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Walking lunge", "sets": 3, "reps": "10 per leg", "placeholder": true },
-        { "name": "Calf raise", "sets": 3, "reps": "12-15", "placeholder": true }
+        {
+          "name": "Back squat",
+          "exerciseId": "squat-back",
+          "targets": [
+            "quads",
+            "glutes",
+            "lower back"
+          ],
+          "sets": 4,
+          "reps": "6-8",
+          "placeholder": true
+        },
+        {
+          "name": "Romanian deadlift",
+          "exerciseId": "hinge-rdl",
+          "targets": [
+            "hamstrings",
+            "glutes",
+            "lower back"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Walking lunge",
+          "exerciseId": "accessory-walking-lunge",
+          "targets": [
+            "quads",
+            "glutes",
+            "core"
+          ],
+          "sets": 3,
+          "reps": "10 per leg",
+          "placeholder": true
+        },
+        {
+          "name": "Calf raise",
+          "exerciseId": "accessory-calf-raise",
+          "targets": [
+            "calves"
+          ],
+          "sets": 3,
+          "reps": "12-15",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session."
     },
@@ -30,10 +72,54 @@
       "label": "Upper",
       "labelAssumed": false,
       "exercises": [
-        { "name": "Bench press", "sets": 4, "reps": "6-8", "placeholder": true },
-        { "name": "Bent-over row", "sets": 4, "reps": "8-10", "placeholder": true },
-        { "name": "Overhead press", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Face pull", "sets": 3, "reps": "12-15", "placeholder": true }
+        {
+          "name": "Bench press",
+          "exerciseId": "push-bench",
+          "targets": [
+            "chest",
+            "triceps",
+            "front delts"
+          ],
+          "sets": 4,
+          "reps": "6-8",
+          "placeholder": true
+        },
+        {
+          "name": "Bent-over row",
+          "exerciseId": "pull-bent-row",
+          "targets": [
+            "mid back",
+            "lats",
+            "biceps",
+            "lower back"
+          ],
+          "sets": 4,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Overhead press",
+          "exerciseId": "push-overhead",
+          "targets": [
+            "shoulders",
+            "triceps",
+            "core"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Face pull",
+          "exerciseId": "accessory-face-pull",
+          "targets": [
+            "rear delts",
+            "upper back"
+          ],
+          "sets": 3,
+          "reps": "12-15",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session."
     },
@@ -42,10 +128,54 @@
       "label": "Full",
       "labelAssumed": false,
       "exercises": [
-        { "name": "Trap bar deadlift", "sets": 3, "reps": "6-8", "placeholder": true },
-        { "name": "Incline dumbbell press", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Lat pulldown", "sets": 3, "reps": "10-12", "placeholder": true },
-        { "name": "Hanging knee raise", "sets": 3, "reps": "10-12", "placeholder": true }
+        {
+          "name": "Trap bar deadlift",
+          "exerciseId": "hinge-trap-bar",
+          "targets": [
+            "hamstrings",
+            "glutes",
+            "quads",
+            "grip"
+          ],
+          "sets": 3,
+          "reps": "6-8",
+          "placeholder": true
+        },
+        {
+          "name": "Incline dumbbell press",
+          "exerciseId": "push-incline-db",
+          "targets": [
+            "upper chest",
+            "front delts",
+            "triceps"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Lat pulldown",
+          "exerciseId": "pull-lat-pulldown",
+          "targets": [
+            "lats",
+            "biceps"
+          ],
+          "sets": 3,
+          "reps": "10-12",
+          "placeholder": true
+        },
+        {
+          "name": "Hanging knee raise",
+          "exerciseId": "core-hanging-knee-raise",
+          "targets": [
+            "core",
+            "hip flexors",
+            "grip"
+          ],
+          "sets": 3,
+          "reps": "10-12",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session."
     }

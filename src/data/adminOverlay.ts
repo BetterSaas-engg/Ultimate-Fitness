@@ -1,4 +1,11 @@
-import type { Meal, MealItem, NutritionDay, WorkoutDay, WorkoutPhase } from '@/types/program';
+import type {
+  Meal,
+  MealItem,
+  NutritionDay,
+  NutritionPhase,
+  WorkoutDay,
+  WorkoutPhase,
+} from '@/types/program';
 import type { AdminEdits } from '@/types/admin';
 import { nutritionItemKey, workoutExerciseKey, workoutSessionKey } from '@/store/useAdminEdits';
 import { normalizeFoodKey } from './foods';
@@ -81,6 +88,10 @@ export function applySessionEdits(
 ): WorkoutDay {
   const label = edits.workoutSessionLabels[workoutSessionKey(phaseId, session.day)] ?? session.label;
 
+  const added = (edits.addedExercises?.[workoutSessionKey(phaseId, session.day)] ?? []).map(
+    (a) => ({ ...a, placeholder: true }) as WorkoutDay['exercises'][number]
+  );
+
   return {
     ...session,
     label,
@@ -94,7 +105,7 @@ export function applySessionEdits(
         reps: patch.reps ?? ex.reps,
         placeholder: patch.confirmedReal ? false : ex.placeholder,
       };
-    }),
+    }).concat(added),
   };
 }
 
@@ -157,4 +168,54 @@ export function swapGroupStatus(groupId: string, edits: AdminEdits) {
 /** Rejected groups stop offering swaps to members. Pending still works. */
 export function swapGroupUsable(groupId: string, edits: AdminEdits): boolean {
   return swapGroupStatus(groupId, edits) !== 'rejected';
+}
+
+/* ---- exercise swap groups: same model, trainer-approved ---- */
+
+export function exerciseGroupStatus(groupId: string, edits: AdminEdits) {
+  return edits.exerciseGroups?.[groupId] ?? 'pending';
+}
+
+export function exerciseGroupUsable(groupId: string, edits: AdminEdits): boolean {
+  return exerciseGroupStatus(groupId, edits) !== 'rejected';
+}
+
+/* ------------------------------------------------------------------ */
+/* Derived weeks — "Save as week 3"                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * A derived week is a POINTER at a source week, not a copy of its data.
+ *
+ * That matters: the duplicate starts life identical, then diverges only where
+ * the nutritionist actually edits it, because item edits are keyed by phaseId
+ * and the derived phase has its own. Nothing is duplicated in storage, and a
+ * later correction to week 2 still flows into anything derived from it that
+ * has not been overridden.
+ */
+export function derivedNutritionPhases(
+  seedPhases: NutritionPhase[],
+  edits: AdminEdits
+): NutritionPhase[] {
+  const all = [...seedPhases];
+  for (const d of edits.derivedPhases ?? []) {
+    const source = all.find((p) => p.phaseId === d.sourcePhaseId);
+    if (!source) continue; // source was removed; drop the derivative quietly
+    all.push({
+      ...source,
+      phaseId: d.phaseId,
+      sequence: d.sequence,
+      verified: false,
+      source: `Duplicated from ${source.phaseId} by the nutrition team`,
+      transcriptionNotes: [
+        `Starts identical to ${source.phaseId}. Edits made here do not affect the original.`,
+      ],
+    });
+  }
+  return all.sort((a, b) => a.sequence - b.sequence);
+}
+
+/** Label for a derived phase, or undefined for a seed phase. */
+export function derivedPhaseLabel(phaseId: string, edits: AdminEdits): string | undefined {
+  return (edits.derivedPhases ?? []).find((p) => p.phaseId === phaseId)?.label;
 }

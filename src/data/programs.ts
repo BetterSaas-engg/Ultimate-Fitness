@@ -42,17 +42,26 @@ export interface NutritionToday {
 
 const NUTRITION_TOTAL_DAYS = NUTRITION_PHASES.reduce((n, p) => n + p.durationDays, 0);
 
-export function getNutritionForDay(programDay: number): NutritionToday | null {
+/**
+ * `phases` defaults to the seed, but the nutritionist can add derived weeks
+ * ("Save as week 3"), and those extend the member's programme for real - so
+ * callers that have the admin edits should pass the resolved list.
+ */
+export function getNutritionForDay(
+  programDay: number,
+  phases: NutritionPhase[] = NUTRITION_PHASES
+): NutritionToday | null {
   if (programDay < 1) return null;
 
-  const beyondProgram = programDay > NUTRITION_TOTAL_DAYS;
+  const totalDays = phases.reduce((n, p) => n + p.durationDays, 0) || NUTRITION_TOTAL_DAYS;
+  const beyondProgram = programDay > totalDays;
 
-  // Past the seeded content we hold the member on the final phase rather than
-  // inventing a week 3. The gym owns what comes next.
-  let cursor = beyondProgram ? ((programDay - 1) % NUTRITION_TOTAL_DAYS) + 1 : programDay;
+  // Past the content we hold the member on the final phase rather than
+  // inventing a week. The gym owns what comes next.
+  let cursor = beyondProgram ? ((programDay - 1) % totalDays) + 1 : programDay;
 
-  for (let i = 0; i < NUTRITION_PHASES.length; i++) {
-    const phase = NUTRITION_PHASES[i];
+  for (let i = 0; i < phases.length; i++) {
+    const phase = phases[i];
     if (cursor <= phase.durationDays) {
       const day = phase.days.find((d) => d.day === cursor);
       if (!day) return null;

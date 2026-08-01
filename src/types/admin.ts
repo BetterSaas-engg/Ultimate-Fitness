@@ -42,8 +42,30 @@ export interface AdminEdits {
    * and approving each separately would be 165 toggles instead of ~40.
    */
   approvedMacros: Record<string, true>;
-  /** key: groupId */
+  /** key: groupId — nutritionist-approved food swaps */
   swapGroups: Record<string, SwapGroupStatus>;
+  /** key: groupId — TRAINER-approved exercise swaps */
+  exerciseGroups: Record<string, SwapGroupStatus>;
+  /** key: workout:<phaseId>:<day> — exercises the trainer added to a session */
+  addedExercises: Record<string, AddedExercise[]>;
+  /** Weeks duplicated from an existing one by the nutritionist. */
+  derivedPhases: DerivedPhase[];
+}
+
+export interface AddedExercise {
+  name: string;
+  sets?: number;
+  reps?: string;
+  exerciseId?: string;
+  targets?: string[];
+}
+
+/** "Save as week 3" - a copy of an existing week, edited from there. */
+export interface DerivedPhase {
+  phaseId: string;
+  sourcePhaseId: string;
+  label: string;
+  sequence: number;
 }
 
 export const EMPTY_EDITS: AdminEdits = {
@@ -52,4 +74,7 @@ export const EMPTY_EDITS: AdminEdits = {
   workoutSessionLabels: {},
   approvedMacros: {},
   swapGroups: {},
+  exerciseGroups: {},
+  addedExercises: {},
+  derivedPhases: [],
 };

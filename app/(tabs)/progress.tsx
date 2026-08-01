@@ -11,11 +11,12 @@ import { BrandHeader } from '@/components/BrandHeader';
 import { useLog } from '@/store/useLog';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
+import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
 import { ROLES } from '@/types/admin';
 import { useStreak } from '@/store/useStreak';
 import { addDays, daysBetween, programDayIndex, todayKey } from '@/lib/date';
-import { colors, radius, space, type } from '@/theme';
+import { colors, radius, space, touch, type } from '@/theme';
 
 export default function ProgressScreen() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function ProgressScreen() {
 
   const dateKey = addDays(todayKey(), profile?.demoDayOffset ?? 0);
   const { clearAll: clearSubs } = useSubstitutions(dateKey);
+  const { clearAll: clearSwaps } = useExerciseSwaps(dateKey);
   const { revertAll: revertAdminEdits } = useAdminEdits();
   const { streak, activeDays } = useStreak(log, dateKey);
   const programDay = profile ? programDayIndex(profile.startDate, dateKey) : 1;
@@ -82,6 +84,13 @@ export default function ProgressScreen() {
           title="Demo mode"
           subtitle="No login behind this — role switching exists for this preview only"
         >
+          <Pressable
+            onPress={() => router.push('/?pick=1')}
+            accessibilityRole="button"
+            style={styles.switchRole}
+          >
+            <Text style={styles.switchRoleText}>Back to the role picker</Text>
+          </Pressable>
           <View style={styles.roleCard}>
             {ROLES.map((r) => {
               const active = (profile?.role ?? 'member') === r.role;
@@ -160,10 +169,11 @@ export default function ProgressScreen() {
               <Pressable
                 onPress={async () => {
                   await clearSubs();
+                  await clearSwaps();
                   await revertAdminEdits();
                   await clear();
                   await reset();
-                  router.replace('/onboarding/goal');
+                  router.replace('/');
                 }}
                 style={styles.reset}
               >
@@ -203,6 +213,16 @@ const styles = StyleSheet.create({
   statLabel: { ...type.tiny, marginTop: 2, textAlign: 'center' },
   nudge: { ...type.small, color: colors.text, marginTop: space.lg, lineHeight: 20 },
 
+  switchRole: {
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    minHeight: touch.min,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: space.sm,
+  },
+  switchRoleText: { ...type.small, color: colors.accentInk, fontWeight: '700' },
   roleCard: {
     backgroundColor: colors.surface,
     borderWidth: 1,

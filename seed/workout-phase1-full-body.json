@@ -18,10 +18,53 @@
       "label": "Full Body A",
       "labelAssumed": true,
       "exercises": [
-        { "name": "Goblet squat", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Dumbbell bench press", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Seated row", "sets": 3, "reps": "10-12", "placeholder": true },
-        { "name": "Plank", "sets": 3, "reps": "30 sec", "placeholder": true }
+        {
+          "name": "Goblet squat",
+          "exerciseId": "squat-goblet",
+          "targets": [
+            "quads",
+            "glutes",
+            "core"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Dumbbell bench press",
+          "exerciseId": "push-db-bench",
+          "targets": [
+            "chest",
+            "triceps",
+            "front delts"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Seated row",
+          "exerciseId": "pull-seated-row",
+          "targets": [
+            "mid back",
+            "lats",
+            "biceps"
+          ],
+          "sets": 3,
+          "reps": "10-12",
+          "placeholder": true
+        },
+        {
+          "name": "Plank",
+          "exerciseId": "core-plank",
+          "targets": [
+            "core",
+            "shoulders"
+          ],
+          "sets": 3,
+          "reps": "30 sec",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
     },
@@ -30,10 +73,51 @@
       "label": "Full Body B",
       "labelAssumed": true,
       "exercises": [
-        { "name": "Romanian deadlift", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Lat pulldown", "sets": 3, "reps": "10-12", "placeholder": true },
-        { "name": "Dumbbell shoulder press", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Dead bug", "sets": 3, "reps": "10 per side", "placeholder": true }
+        {
+          "name": "Romanian deadlift",
+          "exerciseId": "hinge-rdl",
+          "targets": [
+            "hamstrings",
+            "glutes",
+            "lower back"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Lat pulldown",
+          "exerciseId": "pull-lat-pulldown",
+          "targets": [
+            "lats",
+            "biceps"
+          ],
+          "sets": 3,
+          "reps": "10-12",
+          "placeholder": true
+        },
+        {
+          "name": "Dumbbell shoulder press",
+          "exerciseId": "push-db-shoulder",
+          "targets": [
+            "shoulders",
+            "triceps"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Dead bug",
+          "exerciseId": "core-dead-bug",
+          "targets": [
+            "core",
+            "hip flexors"
+          ],
+          "sets": 3,
+          "reps": "10 per side",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
     },
@@ -42,10 +126,53 @@
       "label": "Full Body C",
       "labelAssumed": true,
       "exercises": [
-        { "name": "Leg press", "sets": 3, "reps": "10-12", "placeholder": true },
-        { "name": "Incline dumbbell press", "sets": 3, "reps": "8-10", "placeholder": true },
-        { "name": "Assisted pull-up", "sets": 3, "reps": "6-8", "placeholder": true },
-        { "name": "Farmer carry", "sets": 3, "reps": "30 sec", "placeholder": true }
+        {
+          "name": "Leg press",
+          "exerciseId": "squat-leg-press",
+          "targets": [
+            "quads",
+            "glutes"
+          ],
+          "sets": 3,
+          "reps": "10-12",
+          "placeholder": true
+        },
+        {
+          "name": "Incline dumbbell press",
+          "exerciseId": "push-incline-db",
+          "targets": [
+            "upper chest",
+            "front delts",
+            "triceps"
+          ],
+          "sets": 3,
+          "reps": "8-10",
+          "placeholder": true
+        },
+        {
+          "name": "Assisted pull-up",
+          "exerciseId": "pull-assisted-pullup",
+          "targets": [
+            "lats",
+            "biceps",
+            "core"
+          ],
+          "sets": 3,
+          "reps": "6-8",
+          "placeholder": true
+        },
+        {
+          "name": "Farmer carry",
+          "exerciseId": "carry-farmer",
+          "targets": [
+            "grip",
+            "core",
+            "traps"
+          ],
+          "sets": 3,
+          "reps": "30 sec",
+          "placeholder": true
+        }
       ],
       "prep": "PLACEHOLDER session. Warm up 5 minutes, rest 60-90 sec between sets."
     }

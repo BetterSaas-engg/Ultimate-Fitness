@@ -4,7 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AdminBar, AdminHeading, EditableField, Pill } from '@/components/admin/AdminChrome';
 import { NUTRITION_PHASES } from '@/data/programs';
-import { applyNutritionDayEdits, isMacroApproved } from '@/data/adminOverlay';
+import {
+  applyNutritionDayEdits,
+  derivedNutritionPhases,
+  derivedPhaseLabel,
+  isMacroApproved,
+} from '@/data/adminOverlay';
 import { useAdminEdits, nutritionItemKey } from '@/store/useAdminEdits';
 import { colors, radius, space, type } from '@/theme';
 
@@ -20,7 +25,8 @@ export default function DayEditor() {
   const { phaseId, day } = useLocalSearchParams<{ phaseId: string; day: string }>();
   const { edits, editNutritionItem } = useAdminEdits();
 
-  const phase = NUTRITION_PHASES.find((p) => p.phaseId === phaseId);
+  const phases = derivedNutritionPhases(NUTRITION_PHASES, edits);
+  const phase = phases.find((p) => p.phaseId === phaseId);
   const rawDay = phase?.days.find((d) => d.day === Number(day));
 
   if (!phase || !rawDay) {
@@ -35,14 +41,15 @@ export default function DayEditor() {
   }
 
   const resolved = applyNutritionDayEdits(rawDay, phase.phaseId, edits);
-  const weekNumber = NUTRITION_PHASES.indexOf(phase) + 1;
+  const weekNumber = phases.indexOf(phase) + 1;
+  const weekLabel = derivedPhaseLabel(phase.phaseId, edits) ?? `Week ${weekNumber}`;
 
   return (
     <SafeAreaView style={styles.safe}>
       <AdminBar role="nutritionist" />
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <AdminHeading
-          title={`Week ${weekNumber}, day ${rawDay.day}`}
+          title={`${weekLabel}, day ${rawDay.day}`}
           subtitle="Edit any item's food, quantity or unit. Leave quantity blank for items the sheet gives no amount for."
         />
 

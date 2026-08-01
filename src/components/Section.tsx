@@ -25,7 +25,7 @@ export function Card({ children }: { children: ReactNode }) {
 }
 
 const styles = StyleSheet.create({
-  section: { marginTop: space.xl },
+  section: { marginTop: space.xxl },
   title: { ...type.h2 },
   subtitle: { ...type.small, marginTop: 2 },
   body: { marginTop: space.md, gap: space.md },

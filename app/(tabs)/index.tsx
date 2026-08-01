@@ -20,8 +20,14 @@ import { NUTRITION_PROGRAM } from '@/data/programs';
 import { mealEntryId, useLog, WORKOUT_ENTRY } from '@/store/useLog';
 import { useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
+import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
-import { applyNutritionDayEdits, applySessionEdits, itemIsEstimated } from '@/data/adminOverlay';
+import {
+  applyNutritionDayEdits,
+  applySessionEdits,
+  derivedNutritionPhases,
+  itemIsEstimated,
+} from '@/data/adminOverlay';
 import { loggedMacros, plannedMacros } from '@/lib/macros';
 import { addDays, dayOfWeekOf, formatDateLong, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
@@ -40,6 +46,7 @@ export default function TodayScreen() {
 
   const { substitutions, substitute, restore } = useSubstitutions(dateKey);
   const { edits } = useAdminEdits();
+  const { swaps, swap, restore: restoreSwap } = useExerciseSwaps(dateKey);
 
   if (loading || !profile) {
     return (
@@ -51,7 +58,9 @@ export default function TodayScreen() {
 
   const programDay = programDayIndex(profile.startDate, dateKey);
   const rawWorkout = getWorkoutForDay(programDay);
-  const rawNutrition = getNutritionForDay(programDay);
+  // Weeks the nutritionist duplicated extend the programme for real.
+  const phases = derivedNutritionPhases(NUTRITION_PHASES, edits);
+  const rawNutrition = getNutritionForDay(programDay, phases);
 
   // Admin edits overlay the seed here, so a nutritionist's change is on this
   // screen the moment you switch role - no reload, no seed mutation.
@@ -69,7 +78,7 @@ export default function TodayScreen() {
   // Week 2 items are highlighted against week 1.
   const dayDiff =
     nutrition && nutrition.phaseIndex > 0
-      ? diffForDay(NUTRITION_PHASES[nutrition.phaseIndex - 1], nutrition.phase, nutrition.dayInPhase)
+      ? diffForDay(phases[nutrition.phaseIndex - 1], nutrition.phase, nutrition.dayInPhase)
       : null;
 
   // Free members see the protein bar for the one meal they actually have, so
@@ -94,7 +103,7 @@ export default function TodayScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         {(workout?.beyondProgram || nutrition?.beyondProgram) && (
           <Text style={styles.beyond}>
-            You're past the content we have. Repeating the last block until the gym adds more.
+            You've finished the plan we have — repeating the last block for now.
           </Text>
         )}
 
@@ -110,13 +119,16 @@ export default function TodayScreen() {
         )}
 
         {workout && (
-          <Section title="Your workout" subtitle={workout.phase.phaseId.replace('-', ' ')}>
+          <Section title="Your workout">
             <WorkoutCard
               today={workout}
               logged={isLogged(dateKey, WORKOUT_ENTRY)}
               onToggle={
                 workout.kind === 'session' ? () => toggle(dateKey, WORKOUT_ENTRY) : undefined
               }
+              swaps={swaps}
+              onSwap={swap}
+              onRestore={restoreSwap}
             />
           </Section>
         )}
@@ -127,7 +139,7 @@ export default function TodayScreen() {
             subtitle={
               nutritionUnlocked
                 ? `Week ${nutrition.phaseIndex + 1}, day ${nutrition.dayInPhase}`
-                : 'Nutrition Coaching · preview'
+                : 'A taste of Nutrition Coaching'
             }
           >
             {nutritionUnlocked ? (
@@ -161,13 +173,12 @@ export default function TodayScreen() {
                     {nutrition.day.meals.length - 1} more meals today
                   </Text>
                   <Text style={styles.lockedBody}>
-                    The full 7-day plan — every meal, every portion, with prep notes — comes with
-                    Nutrition Coaching.
+                    Every meal, every portion, with prep notes.
                   </Text>
                 </View>
                 <UpsellCard
                   title="Unlock the full meal plan"
-                  body="The Ultimate Fitness nutrition team builds these week by week. Week 2 steps your portions up and adds complex carbs."
+                  body="Built week by week by the Ultimate Fitness nutrition team, and adjusted as you go."
                   cta="Talk to the front desk"
                   onPress={() => router.push('/(tabs)/progress')}
                 />
@@ -176,7 +187,7 @@ export default function TodayScreen() {
           </Section>
         )}
 
-        <Section title="Today at the gym" subtitle="Drop in — no booking through the app">
+        <Section title="Today at the gym" subtitle="Drop in — the app doesn’t book classes">
           <View style={styles.classes}>
             {todaysClasses.length === 0 ? (
               <Text style={type.small}>No classes on the schedule today.</Text>

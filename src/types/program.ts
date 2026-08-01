@@ -126,6 +126,10 @@ export interface NutritionPhase {
 
 export interface Exercise {
   name: string;
+  /** Links to a swap group. Inline, not via an alias table - we author these. */
+  exerciseId?: string;
+  /** Muscle groups trained, primary first. Shown when offering a swap. */
+  targets?: string[];
   sets?: number;
   reps?: string;
   notes?: string;

@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   EMPTY_EDITS,
+  type AddedExercise,
   type AdminEdits,
+  type DerivedPhase,
   type NutritionItemEdit,
   type SwapGroupStatus,
   type WorkoutExerciseEdit,
@@ -100,6 +102,65 @@ export function useAdminEdits() {
     await persist({ ...cache, swapGroups: { ...cache.swapGroups, [groupId]: status } });
   }, []);
 
+  const setExerciseGroupStatus = useCallback(async (groupId: string, status: SwapGroupStatus) => {
+    await persist({
+      ...cache,
+      exerciseGroups: { ...cache.exerciseGroups, [groupId]: status },
+    });
+  }, []);
+
+  /** Trainer adds an exercise to a session. Always placeholder until confirmed. */
+  const addExercise = useCallback(
+    async (phaseId: string, day: number, ex: AddedExercise) => {
+      const k = workoutSessionKey(phaseId, day);
+      await persist({
+        ...cache,
+        addedExercises: { ...cache.addedExercises, [k]: [...(cache.addedExercises[k] ?? []), ex] },
+      });
+    },
+    []
+  );
+
+  const editAddedExercise = useCallback(
+    async (phaseId: string, day: number, index: number, patch: Partial<AddedExercise>) => {
+      const k = workoutSessionKey(phaseId, day);
+      const list = [...(cache.addedExercises[k] ?? [])];
+      if (!list[index]) return;
+      list[index] = { ...list[index], ...patch };
+      await persist({ ...cache, addedExercises: { ...cache.addedExercises, [k]: list } });
+    },
+    []
+  );
+
+  const removeAddedExercise = useCallback(
+    async (phaseId: string, day: number, index: number) => {
+      const k = workoutSessionKey(phaseId, day);
+      const list = (cache.addedExercises[k] ?? []).filter((_, i) => i !== index);
+      await persist({ ...cache, addedExercises: { ...cache.addedExercises, [k]: list } });
+    },
+    []
+  );
+
+  /** "Save as week 3" - duplicate an existing week and edit from there. */
+  const derivePhase = useCallback(async (sourcePhaseId: string, label: string, sequence: number) => {
+    const existing = cache.derivedPhases ?? [];
+    // Stable id from the sequence so re-running does not stack duplicates.
+    const phaseId = `derived-${sequence}`;
+    const next: DerivedPhase[] = [
+      ...existing.filter((p) => p.phaseId !== phaseId),
+      { phaseId, sourcePhaseId, label, sequence },
+    ].sort((a, b) => a.sequence - b.sequence);
+    await persist({ ...cache, derivedPhases: next });
+    return phaseId;
+  }, []);
+
+  const removeDerivedPhase = useCallback(async (phaseId: string) => {
+    await persist({
+      ...cache,
+      derivedPhases: (cache.derivedPhases ?? []).filter((p) => p.phaseId !== phaseId),
+    });
+  }, []);
+
   const revertAll = useCallback(async () => {
     await persist(EMPTY_EDITS);
   }, []);
@@ -111,9 +172,18 @@ export function useAdminEdits() {
     sessionLabels: Object.keys(edits.workoutSessionLabels).length,
     approvedMacros: Object.keys(edits.approvedMacros).length,
     swapGroups: Object.keys(edits.swapGroups).length,
+    exerciseGroups: Object.keys(edits.exerciseGroups ?? {}).length,
+    addedExercises: Object.values(edits.addedExercises ?? {}).reduce((n, l) => n + l.length, 0),
+    derivedPhases: (edits.derivedPhases ?? []).length,
   };
   const total =
-    counts.nutritionItems + counts.workoutExercises + counts.sessionLabels + counts.swapGroups;
+    counts.nutritionItems +
+    counts.workoutExercises +
+    counts.sessionLabels +
+    counts.swapGroups +
+    counts.exerciseGroups +
+    counts.addedExercises +
+    counts.derivedPhases;
 
   return {
     edits,
@@ -124,6 +194,12 @@ export function useAdminEdits() {
     editSessionLabel,
     setMacroApproved,
     setSwapGroupStatus,
+    setExerciseGroupStatus,
+    addExercise,
+    editAddedExercise,
+    removeAddedExercise,
+    derivePhase,
+    removeDerivedPhase,
     revertAll,
   };
 }

@@ -9,7 +9,13 @@ import { useProfile } from '@/store/useProfile';
 import { useAdminEdits } from '@/store/useAdminEdits';
 import { NUTRITION_PHASES, NUTRITION_PROGRAM, WORKOUT_PHASES, WORKOUT_PROGRAM } from '@/data/programs';
 import { SUBSTITUTION_GROUPS } from '@/data/substitutions';
-import { itemIsEstimated, phaseConfirmedCount, swapGroupStatus } from '@/data/adminOverlay';
+import {
+  exerciseGroupStatus,
+  itemIsEstimated,
+  phaseConfirmedCount,
+  swapGroupStatus,
+} from '@/data/adminOverlay';
+import { EXERCISE_GROUPS } from '@/data/exercises';
 import { colors, radius, space, type } from '@/theme';
 
 /** Hub. What you see depends on the role - trainers never see meal editing. */
@@ -37,6 +43,9 @@ export default function AdminHub() {
   const pendingSwaps = SUBSTITUTION_GROUPS.filter(
     (g) => swapGroupStatus(g.groupId, edits) === 'pending'
   ).length;
+  const pendingExercisePatterns = EXERCISE_GROUPS.filter(
+    (g) => exerciseGroupStatus(g.groupId, edits) === 'pending'
+  ).length;
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -58,6 +67,18 @@ export default function AdminHub() {
               value={`${WORKOUT_PHASES.length} phases · ${WORKOUT_PHASES.reduce((n, p) => n + p.days.length, 0)} session templates`}
               meta={trainerMeta(edits)}
               onPress={() => router.push('/admin/workout')}
+            />
+            <AdminRow
+              label="Review exercise swaps"
+              value="Approve or reject each movement pattern members can swap within"
+              onPress={() => router.push('/admin/workout/swaps')}
+              right={
+                pendingExercisePatterns > 0 ? (
+                  <Pill text={`${pendingExercisePatterns} PENDING`} tone="warn" />
+                ) : (
+                  <Pill text="REVIEWED" tone="ok" />
+                )
+              }
             />
           </View>
         )}
@@ -95,6 +116,14 @@ export default function AdminHub() {
             />
           </View>
         )}
+
+        <Pressable
+          onPress={() => router.push('/?pick=1')}
+          accessibilityRole="button"
+          style={styles.switchRole}
+        >
+          <Text style={styles.switchRoleText}>Switch role</Text>
+        </Pressable>
 
         <View style={styles.revertBlock}>
           <Text style={type.h3}>Revert all edits</Text>
@@ -158,6 +187,15 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.xl, paddingBottom: space.xxl },
   list: { gap: space.md },
+  switchRole: {
+    marginTop: space.xl,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    paddingVertical: space.md,
+    alignItems: 'center',
+  },
+  switchRoleText: { ...type.small, color: colors.accentInk, fontWeight: '700' },
   revertBlock: {
     marginTop: space.xxl,
     borderTopWidth: StyleSheet.hairlineWidth,

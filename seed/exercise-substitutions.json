@@ -1,0 +1,254 @@
+{
+  "_conventions": {
+    "purpose": "Swap groups for exercises, mirroring seed/substitutions.json for food.",
+    "grouping": "By MOVEMENT PATTERN, not by muscle name. Two exercises are interchangeable when they train the same pattern through a similar range - 'chest day' is not a swap criterion.",
+    "targets": "Muscle groups each option actually trains, primary first. Shown to the member so a swap is an informed choice rather than a shuffle.",
+    "equipment": "The usual reason a member needs a swap at all: the rack is busy, or the machine is taken.",
+    "exerciseId": "Referenced from the workout seed inline. Unlike food there is no alias table - we author these names ourselves, so there are no transcription variants to reconcile.",
+    "approval": "Groups are TRAINER-approved, the way food groups are nutritionist-approved. Rejected groups stop being offered.",
+    "status": "placeholder - EVERY group, option and load is pending trainer approval"
+  },
+
+  "groups": [
+    {
+      "groupId": "squat-pattern",
+      "label": "Squat pattern",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "squat-goblet",
+          "label": "Goblet squat",
+          "targets": ["quads", "glutes", "core"],
+          "equipment": "dumbbell",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "squat-back",
+          "label": "Back squat",
+          "targets": ["quads", "glutes", "lower back"],
+          "equipment": "barbell + rack",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "squat-leg-press",
+          "label": "Leg press",
+          "targets": ["quads", "glutes"],
+          "equipment": "machine",
+          "placeholder": true,
+          "note": "Easiest on the lower back if the bar is bothering you."
+        },
+        {
+          "exerciseId": "squat-split",
+          "label": "Split squat",
+          "targets": ["quads", "glutes"],
+          "equipment": "dumbbells",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "hinge-pattern",
+      "label": "Hinge pattern",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "hinge-rdl",
+          "label": "Romanian deadlift",
+          "targets": ["hamstrings", "glutes", "lower back"],
+          "equipment": "barbell or dumbbells",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "hinge-trap-bar",
+          "label": "Trap bar deadlift",
+          "targets": ["hamstrings", "glutes", "quads", "grip"],
+          "equipment": "trap bar",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "hinge-back-extension",
+          "label": "Back extension",
+          "targets": ["hamstrings", "glutes", "lower back"],
+          "equipment": "bench",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "horizontal-push",
+      "label": "Horizontal push",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "push-db-bench",
+          "label": "Dumbbell bench press",
+          "targets": ["chest", "triceps", "front delts"],
+          "equipment": "dumbbells + bench",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "push-bench",
+          "label": "Bench press",
+          "targets": ["chest", "triceps", "front delts"],
+          "equipment": "barbell + bench",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "push-incline-db",
+          "label": "Incline dumbbell press",
+          "targets": ["upper chest", "front delts", "triceps"],
+          "equipment": "dumbbells + incline bench",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "push-machine-chest",
+          "label": "Chest press machine",
+          "targets": ["chest", "triceps"],
+          "equipment": "machine",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "vertical-push",
+      "label": "Vertical push",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "push-db-shoulder",
+          "label": "Dumbbell shoulder press",
+          "targets": ["shoulders", "triceps"],
+          "equipment": "dumbbells",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "push-overhead",
+          "label": "Overhead press",
+          "targets": ["shoulders", "triceps", "core"],
+          "equipment": "barbell",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "horizontal-pull",
+      "label": "Horizontal pull",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "pull-seated-row",
+          "label": "Seated row",
+          "targets": ["mid back", "lats", "biceps"],
+          "equipment": "cable machine",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "pull-bent-row",
+          "label": "Bent-over row",
+          "targets": ["mid back", "lats", "biceps", "lower back"],
+          "equipment": "barbell",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "pull-db-row",
+          "label": "Single-arm dumbbell row",
+          "targets": ["lats", "mid back", "biceps"],
+          "equipment": "dumbbell + bench",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "vertical-pull",
+      "label": "Vertical pull",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "pull-lat-pulldown",
+          "label": "Lat pulldown",
+          "targets": ["lats", "biceps"],
+          "equipment": "machine",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "pull-assisted-pullup",
+          "label": "Assisted pull-up",
+          "targets": ["lats", "biceps", "core"],
+          "equipment": "assisted pull-up machine",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "core",
+      "label": "Core",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "core-plank",
+          "label": "Plank",
+          "targets": ["core", "shoulders"],
+          "equipment": "none",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "core-dead-bug",
+          "label": "Dead bug",
+          "targets": ["core", "hip flexors"],
+          "equipment": "none",
+          "placeholder": true,
+          "note": "Kinder on the lower back than a plank if you're new to this."
+        },
+        {
+          "exerciseId": "core-hanging-knee-raise",
+          "label": "Hanging knee raise",
+          "targets": ["core", "hip flexors", "grip"],
+          "equipment": "pull-up bar",
+          "placeholder": true
+        }
+      ]
+    },
+
+    {
+      "groupId": "carry-and-accessory",
+      "label": "Carries and accessories",
+      "placeholder": true,
+      "members": [
+        {
+          "exerciseId": "carry-farmer",
+          "label": "Farmer carry",
+          "targets": ["grip", "core", "traps"],
+          "equipment": "dumbbells",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "accessory-face-pull",
+          "label": "Face pull",
+          "targets": ["rear delts", "upper back"],
+          "equipment": "cable machine",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "accessory-calf-raise",
+          "label": "Calf raise",
+          "targets": ["calves"],
+          "equipment": "machine or step",
+          "placeholder": true
+        },
+        {
+          "exerciseId": "accessory-walking-lunge",
+          "label": "Walking lunge",
+          "targets": ["quads", "glutes", "core"],
+          "equipment": "dumbbells",
+          "placeholder": true
+        }
+      ]
+    }
+  ]
+}
