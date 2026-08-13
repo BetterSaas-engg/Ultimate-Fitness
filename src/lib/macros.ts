@@ -107,6 +107,16 @@ export function loggedMacros(
 }
 
 /**
+ * The number both the protein bar and the glance ring aim at: an explicit
+ * onboarding target if the member set one, otherwise whatever today's plan adds
+ * up to. Shared rather than copied - two readouts of the same thing sitting on
+ * the same screen must not be able to disagree.
+ */
+export function proteinTargetFor(planned: number, overrideTarget?: number): number {
+  return typeof overrideTarget === 'number' && overrideTarget > 0 ? overrideTarget : planned;
+}
+
+/**
  * True when any item contributing to a total is only an estimate. Today that
  * is everything, but it stops being a lie the moment the nutritionist signs
  * off on part of the table.

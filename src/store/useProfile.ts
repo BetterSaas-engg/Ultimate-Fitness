@@ -46,7 +46,12 @@ function broadcast(p: Profile | null) {
 export async function loadProfile(): Promise<Profile | null> {
   const raw = await AsyncStorage.getItem(KEY);
   const parsed = raw ? (JSON.parse(raw) as Profile) : null;
-  cache = parsed;
+  // broadcast, not `cache = parsed`. The first component to mount after a page
+  // load took its useState snapshot while cache was still null, so filling the
+  // cache silently leaves that component holding null forever: the entry screen
+  // shows the role picker to someone already onboarded, and a cold load of
+  // Today sits on its spinner permanently. Every other store already does this.
+  broadcast(parsed);
   return parsed;
 }
 

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { round1 } from '@/lib/macros';
+import { proteinTargetFor, round1 } from '@/lib/macros';
 import { colors, gradients, radius, space, type } from '@/theme';
 
 /**
@@ -28,7 +28,7 @@ export function ProteinBar({
   estimated: boolean;
 }) {
   const usingOverride = typeof overrideTarget === 'number' && overrideTarget > 0;
-  const target = usingOverride ? overrideTarget : planned;
+  const target = proteinTargetFor(planned, overrideTarget);
 
   const safeTarget = target > 0 ? target : 1;
   const pct = Math.min(100, (logged / safeTarget) * 100);

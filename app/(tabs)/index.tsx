@@ -10,6 +10,7 @@ import { UpsellCard } from '@/components/UpsellCard';
 import { Section } from '@/components/Section';
 import { BrandHeader } from '@/components/BrandHeader';
 import { ProteinBar } from '@/components/ProteinBar';
+import { TodayGlance, type WorkoutState } from '@/components/TodayGlance';
 
 import { classesOn } from '@/data/classes';
 import { getNutritionForDay, getWorkoutForDay, NUTRITION_PHASES } from '@/data/programs';
@@ -28,7 +29,7 @@ import {
   derivedNutritionPhases,
   itemIsEstimated,
 } from '@/data/adminOverlay';
-import { loggedMacros, plannedMacros } from '@/lib/macros';
+import { loggedMacros, plannedMacros, proteinTargetFor } from '@/lib/macros';
 import { addDays, dayOfWeekOf, formatDateLong, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, type } from '@/theme';
 
@@ -97,10 +98,30 @@ export default function TodayScreen() {
     isLogged(dateKey, mealEntryId(slot))
   );
 
+  // The glance rings read off exactly what's rendered below them: the same
+  // tier-limited meal list, the same protein target as the bar, the same log.
+  const mealsDone = visibleMeals.filter((m) => isLogged(dateKey, mealEntryId(m.slot))).length;
+  const workoutState: WorkoutState = !workout
+    ? 'none'
+    : workout.kind === 'rest'
+      ? 'rest'
+      : isLogged(dateKey, WORKOUT_ENTRY)
+        ? 'done'
+        : 'todo';
+
   return (
     <SafeAreaView style={styles.safe}>
       <BrandHeader right={`Day ${programDay}`} title={formatDateLong(dateKey)} />
       <ScrollView contentContainerStyle={styles.content}>
+        <TodayGlance
+          dateKey={dateKey}
+          mealsDone={mealsDone}
+          mealsTotal={visibleMeals.length}
+          proteinLogged={eaten.protein}
+          proteinTarget={proteinTargetFor(planned.protein, proteinOverride)}
+          workout={workoutState}
+        />
+
         {(workout?.beyondProgram || nutrition?.beyondProgram) && (
           <Text style={styles.beyond}>
             You've finished the plan we have — repeating the last block for now.
