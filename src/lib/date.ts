@@ -50,6 +50,15 @@ export function dayOfWeekOf(key: string): number {
   return parseDateKey(key).getDay();
 }
 
+/**
+ * Monday of the week containing `key`. The gym's week reads Monday-Sunday,
+ * which is not the seed's 0=Sunday convention - that one exists to match the
+ * class schedule and stays where it is.
+ */
+export function startOfWeek(key: string): string {
+  return addDays(key, -((dayOfWeekOf(key) + 6) % 7));
+}
+
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export function weekdayName(dow: number): string {

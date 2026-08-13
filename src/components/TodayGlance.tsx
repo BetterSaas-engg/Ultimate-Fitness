@@ -1,7 +1,10 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { round1 } from '@/lib/macros';
+import { closureFor, type WorkoutState } from '@/lib/dayStatus';
 import { colors, radius, space, type } from '@/theme';
+
+export type { WorkoutState };
 
 /**
  * Today at a glance - three rings over the day's three commitments.
@@ -18,12 +21,6 @@ import { colors, radius, space, type } from '@/theme';
  * Rings are drawn with rotated half-circles rather than SVG - react-native-svg
  * isn't a dependency and one progress card doesn't justify adding it.
  */
-
-export type WorkoutState =
-  | 'done' // logged
-  | 'todo' // scheduled, not logged
-  | 'rest' // the plan says rest: complete, not empty
-  | 'none'; // no programme for this day at all
 
 interface Props {
   /** Which day this is a glance at. Resets the one-shot celebration. */
@@ -63,14 +60,18 @@ export function TodayGlance({
   proteinTarget,
   workout,
 }: Props) {
-  const mealsInactive = mealsTotal <= 0;
-  const mealsComplete = !mealsInactive && mealsDone >= mealsTotal;
-
-  const proteinInactive = proteinTarget <= 0;
-  const proteinComplete = !proteinInactive && proteinLogged >= proteinTarget;
-
-  const workoutInactive = workout === 'none';
-  const workoutComplete = workout === 'done' || workout === 'rest';
+  // One definition of "closed", shared with the week chart on Progress.
+  const {
+    mealsInactive,
+    mealsClosed: mealsComplete,
+    proteinInactive,
+    proteinClosed: proteinComplete,
+    workoutInactive,
+    workoutClosed: workoutComplete,
+    activeCount,
+    closedCount,
+    allClosed,
+  } = closureFor({ mealsDone, mealsTotal, proteinLogged, proteinTarget, workout });
 
   const rings: RingState[] = [
     {
@@ -111,11 +112,6 @@ export function TodayGlance({
     },
   ];
 
-  // An inactive ring has nothing to close, so it must not hold the day hostage.
-  // At least one real ring has to exist or "all closed" would mean nothing.
-  const active = rings.filter((r) => !r.inactive);
-  const allClosed = active.length > 0 && active.every((r) => r.complete);
-
   // One-shot entrance, once per day. The interpolations below never drive
   // opacity to 0: if the animation doesn't run - a paused tab, reduced motion,
   // a headless renderer - the message must still be on screen. Visibility is
@@ -142,7 +138,7 @@ export function TodayGlance({
       <View style={styles.header}>
         <Text style={type.h3}>Today at a glance</Text>
         <Text style={styles.count}>
-          {active.filter((r) => r.complete).length}/{active.length} closed
+          {closedCount}/{activeCount} closed
         </Text>
       </View>
 

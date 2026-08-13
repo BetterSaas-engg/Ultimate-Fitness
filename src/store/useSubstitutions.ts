@@ -64,5 +64,8 @@ export function useSubstitutions(dateKey: string) {
     await persist({});
   }, []);
 
-  return { substitutions: forDay, substitute, restore, clearAll };
+  // `all` is every day's overlay, for callers that look across dates - the week
+  // chart recomputes past days and needs the substitutions that were in force
+  // on each of them, not just today's.
+  return { substitutions: forDay, all, substitute, restore, clearAll };
 }

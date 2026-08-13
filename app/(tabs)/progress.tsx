@@ -7,6 +7,7 @@ import { Section } from '@/components/Section';
 import { UpsellCard } from '@/components/UpsellCard';
 import { ProteinTargetStepper } from '@/components/ProteinTargetStepper';
 import { BrandHeader } from '@/components/BrandHeader';
+import { WeekProteinChart } from '@/components/WeekProteinChart';
 
 import { useLog } from '@/store/useLog';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
@@ -52,6 +53,10 @@ export default function ProgressScreen() {
             {streak} day{streak === 1 ? '' : 's'} in a row. This is the part that actually works.
           </Text>
         )}
+
+        <View style={{ marginTop: space.xl }}>
+          <WeekProteinChart today={dateKey} />
+        </View>
 
         <Section
           title="Daily protein target"
