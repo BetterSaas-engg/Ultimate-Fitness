@@ -11,6 +11,7 @@ import { Section } from '@/components/Section';
 import { BrandHeader } from '@/components/BrandHeader';
 import { ProteinBar } from '@/components/ProteinBar';
 import { TodayGlance, type WorkoutState } from '@/components/TodayGlance';
+import { MilestoneCard } from '@/components/MilestoneCard';
 
 import { classesOn } from '@/data/classes';
 import { getNutritionForDay, getWorkoutForDay, NUTRITION_PHASES } from '@/data/programs';
@@ -23,6 +24,7 @@ import { useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
 import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
+import { useMilestones } from '@/store/useMilestones';
 import {
   applyNutritionDayEdits,
   applySessionEdits,
@@ -48,6 +50,7 @@ export default function TodayScreen() {
   const { substitutions, substitute, restore } = useSubstitutions(dateKey);
   const { edits } = useAdminEdits();
   const { swaps, swap, restore: restoreSwap } = useExerciseSwaps(dateKey);
+  const { pending: milestone, dismiss: dismissMilestone } = useMilestones(dateKey);
 
   if (loading || !profile) {
     return (
@@ -113,6 +116,12 @@ export default function TodayScreen() {
     <SafeAreaView style={styles.safe}>
       <BrandHeader right={`Day ${programDay}`} title={formatDateLong(dateKey)} />
       <ScrollView contentContainerStyle={styles.content}>
+        {milestone && (
+          <View style={{ marginBottom: space.lg }}>
+            <MilestoneCard id={milestone.id} onDismiss={() => void dismissMilestone(milestone.id)} />
+          </View>
+        )}
+
         <TodayGlance
           dateKey={dateKey}
           mealsDone={mealsDone}

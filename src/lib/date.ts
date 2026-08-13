@@ -59,6 +59,21 @@ export function startOfWeek(key: string): string {
   return addDays(key, -((dayOfWeekOf(key) + 6) % 7));
 }
 
+export function startOfMonth(key: string): string {
+  const [y, m] = key.split('-');
+  return `${y}-${m}-01`;
+}
+
+/** Day 0 of the next month is the last day of this one. */
+export function daysInMonth(key: string): number {
+  const [y, m] = key.split('-').map(Number);
+  return new Date(y, m, 0).getDate();
+}
+
+export function monthName(key: string): string {
+  return parseDateKey(key).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+}
+
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export function weekdayName(dow: number): string {

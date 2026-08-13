@@ -8,12 +8,14 @@ import { UpsellCard } from '@/components/UpsellCard';
 import { ProteinTargetStepper } from '@/components/ProteinTargetStepper';
 import { BrandHeader } from '@/components/BrandHeader';
 import { WeekProteinChart } from '@/components/WeekProteinChart';
+import { StreakCalendar } from '@/components/StreakCalendar';
 
 import { useLog } from '@/store/useLog';
 import { DEFAULT_PROTEIN_TARGET_G, useProfile } from '@/store/useProfile';
 import { useSubstitutions } from '@/store/useSubstitutions';
 import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
+import { clearMilestones } from '@/store/useMilestones';
 import { ROLES } from '@/types/admin';
 import { useStreak } from '@/store/useStreak';
 import { addDays, daysBetween, programDayIndex, todayKey } from '@/lib/date';
@@ -54,7 +56,8 @@ export default function ProgressScreen() {
           </Text>
         )}
 
-        <View style={{ marginTop: space.xl }}>
+        <View style={{ marginTop: space.xl, gap: space.md }}>
+          <StreakCalendar today={dateKey} />
           <WeekProteinChart today={dateKey} />
         </View>
 
@@ -177,6 +180,9 @@ export default function ProgressScreen() {
                   await clearSwaps();
                   await revertAdminEdits();
                   await clear();
+                  // Otherwise "start over" leaves every milestone suppressed
+                  // and the first-meal moment never fires again.
+                  await clearMilestones();
                   await reset();
                   router.replace('/');
                 }}
