@@ -16,9 +16,12 @@ export default function Root({ children }: PropsWithChildren) {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        {/* viewport-fit=cover is what makes env(safe-area-inset-*) report
+            real numbers. Without it iOS returns 0 in standalone mode and the
+            tab bar sits under the home indicator. */}
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
         />
 
         {/* Title and description live in app/_layout.tsx - expo-router emits
