@@ -76,6 +76,8 @@ export function EditableField({
   keyboardType,
   onCommit,
   width,
+  multiline,
+  minHeight,
 }: {
   label?: string;
   value: string;
@@ -83,6 +85,8 @@ export function EditableField({
   keyboardType?: 'default' | 'numeric';
   onCommit: (v: string) => void;
   width?: number;
+  multiline?: boolean;
+  minHeight?: number;
 }) {
   const [draft, setDraft] = useState(value);
   const [focused, setFocused] = useState(false);
@@ -102,13 +106,24 @@ export function EditableField({
           setFocused(false);
           if (draft !== value) onCommit(draft);
         }}
-        onSubmitEditing={() => {
-          if (draft !== value) onCommit(draft);
-        }}
+        // Not on multiline: there Enter means "new paragraph", not "done".
+        onSubmitEditing={
+          multiline
+            ? undefined
+            : () => {
+                if (draft !== value) onCommit(draft);
+              }
+        }
+        multiline={multiline}
+        textAlignVertical={multiline ? 'top' : undefined}
         placeholder={placeholder}
         placeholderTextColor={colors.textFaint}
         keyboardType={keyboardType}
-        style={[styles.input, focused && styles.inputFocused]}
+        style={[
+          styles.input,
+          focused && styles.inputFocused,
+          multiline && { minHeight: minHeight ?? 96, paddingTop: space.sm },
+        ]}
         accessibilityLabel={label}
       />
     </View>

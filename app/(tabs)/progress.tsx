@@ -16,6 +16,7 @@ import { useSubstitutions } from '@/store/useSubstitutions';
 import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
 import { clearMilestones } from '@/store/useMilestones';
+import { useNotes } from '@/store/useNotes';
 import { ROLES } from '@/types/admin';
 import { useStreak } from '@/store/useStreak';
 import { addDays, daysBetween, programDayIndex, todayKey } from '@/lib/date';
@@ -32,6 +33,9 @@ export default function ProgressScreen() {
   const { clearAll: clearSwaps } = useExerciseSwaps(dateKey);
   const { revertAll: revertAdminEdits } = useAdminEdits();
   const { streak, activeDays } = useStreak(log, dateKey);
+  // The member's own notes, whatever role is currently being previewed - this
+  // is the member surface. Staff notes live in the admin area.
+  const { notes } = useNotes('member');
   const programDay = profile ? programDayIndex(profile.startDate, dateKey) : 1;
 
   return (
@@ -60,6 +64,28 @@ export default function ProgressScreen() {
           <StreakCalendar today={dateKey} />
           <WeekProteinChart today={dateKey} />
         </View>
+
+        <Section title="Notes" subtitle="For your next check-in">
+          <Pressable
+            onPress={() => router.push('/notes')}
+            accessibilityRole="button"
+            style={({ pressed }) => [styles.notesCard, pressed && { opacity: 0.8 }]}
+          >
+            <View style={{ flex: 1 }}>
+              <Text style={type.body}>
+                {notes.length === 0
+                  ? 'Start a note'
+                  : `${notes.length} note${notes.length === 1 ? '' : 's'}`}
+              </Text>
+              <Text style={styles.notesHint} numberOfLines={1}>
+                {notes.length === 0
+                  ? 'Things to ask, how the week felt'
+                  : (notes[0].title ?? notes[0].body)}
+              </Text>
+            </View>
+            <Text style={styles.notesChevron}>›</Text>
+          </Pressable>
+        </Section>
 
         <Section
           title="Daily protein target"
@@ -252,6 +278,20 @@ const styles = StyleSheet.create({
   },
   roleOn: { backgroundColor: colors.accentSoft },
   roleMark: { color: colors.accentInk, fontSize: 14 },
+  notesCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.md,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.lg,
+    padding: space.lg,
+    minHeight: touch.min,
+  },
+  notesHint: { ...type.tiny, marginTop: 2 },
+  notesChevron: { color: colors.textMuted, fontSize: 22 },
+
   targetHeader: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   targetCard: {
     gap: space.md,

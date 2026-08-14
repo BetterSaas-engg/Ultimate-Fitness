@@ -7,6 +7,7 @@ import { AdminBar, AdminHeading, AdminRow, ConfirmDialog, Pill } from '@/compone
 import { BrandHeader } from '@/components/BrandHeader';
 import { useProfile } from '@/store/useProfile';
 import { useAdminEdits } from '@/store/useAdminEdits';
+import { useNotes } from '@/store/useNotes';
 import { NUTRITION_PHASES, NUTRITION_PROGRAM, WORKOUT_PHASES, WORKOUT_PROGRAM } from '@/data/programs';
 import { SUBSTITUTION_GROUPS } from '@/data/substitutions';
 import {
@@ -26,6 +27,8 @@ export default function AdminHub() {
   const [confirming, setConfirming] = useState(false);
 
   const role = profile?.role ?? 'member';
+  // Before the early return below - hooks cannot be conditional.
+  const noteCount = useNotes(role).notes.length;
 
   if (role === 'member') {
     return (
@@ -116,6 +119,19 @@ export default function AdminHub() {
             />
           </View>
         )}
+
+        {/* Both staff roles keep notes; each sees only their own. */}
+        <View style={[styles.list, { marginTop: space.md }]}>
+          <AdminRow
+            label="Notes"
+            value={
+              noteCount === 0
+                ? 'Your own working notes — the member never sees these'
+                : `${noteCount} note${noteCount === 1 ? '' : 's'}`
+            }
+            onPress={() => router.push('/admin/notes')}
+          />
+        </View>
 
         <Pressable
           onPress={() => router.push('/?pick=1')}
