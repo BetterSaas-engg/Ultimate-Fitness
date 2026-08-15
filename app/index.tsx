@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { Logo } from '@/components/BrandHeader';
 import { useProfile } from '@/store/useProfile';
+import { homeForRole } from '@/lib/roleHome';
 import { ROLES } from '@/types/admin';
 import type { Role } from '@/types/admin';
 import { colors, gradients, radius, shadow, space, touch, type } from '@/theme';
@@ -32,15 +33,13 @@ export default function Entry() {
   const settled = !loading && Boolean(role) && !forcePicker;
 
   useEffect(() => {
-    if (!settled) return;
-    if (role === 'member') router.replace(profile?.onboardedAt ? '/(tabs)' : '/onboarding/goal');
-    else router.replace('/(tabs)/admin');
+    if (!settled || !role) return;
+    router.replace(homeForRole(role, Boolean(profile?.onboardedAt)));
   }, [settled, role, profile?.onboardedAt, router]);
 
   async function choose(next: Role) {
     await update({ role: next });
-    if (next === 'member') router.replace(profile?.onboardedAt ? '/(tabs)' : '/onboarding/goal');
-    else router.replace('/(tabs)/admin');
+    router.replace(homeForRole(next, Boolean(profile?.onboardedAt)));
   }
 
   if (loading || settled) {

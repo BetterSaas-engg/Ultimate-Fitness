@@ -16,8 +16,9 @@ import { useSubstitutions } from '@/store/useSubstitutions';
 import { useExerciseSwaps } from '@/store/useExerciseSwaps';
 import { useAdminEdits } from '@/store/useAdminEdits';
 import { clearMilestones } from '@/store/useMilestones';
-import { useNotes } from '@/store/useNotes';
-import { ROLES } from '@/types/admin';
+import { clearNotes, useNotes } from '@/store/useNotes';
+import { RoleSwitcher } from '@/components/RoleSwitcher';
+import { ConfirmDialog } from '@/components/admin/AdminChrome';
 import { useStreak } from '@/store/useStreak';
 import { addDays, daysBetween, programDayIndex, todayKey } from '@/lib/date';
 import { colors, radius, space, touch, type } from '@/theme';
@@ -26,7 +27,10 @@ export default function ProgressScreen() {
   const router = useRouter();
   const { profile, update, reset } = useProfile();
   const { log, clear } = useLog();
-  const [showDemo, setShowDemo] = useState(false);
+  // Open by default: the role switcher lives in here, and hiding the demo's
+  // most-used control behind a collapsed section is the problem, not the fix.
+  const [showDemo, setShowDemo] = useState(true);
+  const [confirmingReset, setConfirmingReset] = useState(false);
 
   const dateKey = addDays(todayKey(), profile?.demoDayOffset ?? 0);
   const { clearAll: clearSubs } = useSubstitutions(dateKey);
@@ -114,39 +118,6 @@ export default function ProgressScreen() {
           </View>
         </Section>
 
-        <Section
-          title="Demo mode"
-          subtitle="No login behind this — role switching exists for this preview only"
-        >
-          <Pressable
-            onPress={() => router.push('/?pick=1')}
-            accessibilityRole="button"
-            style={styles.switchRole}
-          >
-            <Text style={styles.switchRoleText}>Back to the role picker</Text>
-          </Pressable>
-          <View style={styles.roleCard}>
-            {ROLES.map((r) => {
-              const active = (profile?.role ?? 'member') === r.role;
-              return (
-                <Pressable
-                  key={r.role}
-                  onPress={() => update({ role: r.role })}
-                  accessibilityRole="radio"
-                  accessibilityState={{ selected: active }}
-                  style={[styles.role, active && styles.roleOn]}
-                >
-                  <View style={{ flex: 1 }}>
-                    <Text style={[type.body, active && { fontWeight: '700' }]}>{r.label}</Text>
-                    <Text style={type.tiny}>{r.blurb}</Text>
-                  </View>
-                  {active ? <Text style={styles.roleMark}>●</Text> : null}
-                </Pressable>
-              );
-            })}
-          </View>
-        </Section>
-
         <Section title="From the gym">
           <UpsellCard
             title="Your first free session with a trainer"
@@ -164,6 +135,24 @@ export default function ProgressScreen() {
 
           {showDemo && profile && (
             <View style={styles.demo}>
+              <View>
+                <Text style={type.body}>Viewing as</Text>
+                <Text style={type.tiny}>
+                  Switches straight to that role's home. Nothing is cleared — your log, streak,
+                  notes and edits all stay.
+                </Text>
+                <View style={{ marginTop: space.sm }}>
+                  <RoleSwitcher />
+                </View>
+                <Pressable
+                  onPress={() => router.push('/?pick=1')}
+                  accessibilityRole="button"
+                  style={styles.switchRole}
+                >
+                  <Text style={styles.switchRoleText}>Back to the role picker</Text>
+                </Pressable>
+              </View>
+
               <View style={styles.demoRow}>
                 <View style={{ flex: 1 }}>
                   <Text style={type.body}>Nutrition Coaching unlocked</Text>
@@ -200,26 +189,49 @@ export default function ProgressScreen() {
                 ))}
               </View>
 
-              <Pressable
-                onPress={async () => {
-                  await clearSubs();
-                  await clearSwaps();
-                  await revertAdminEdits();
-                  await clear();
-                  // Otherwise "start over" leaves every milestone suppressed
-                  // and the first-meal moment never fires again.
-                  await clearMilestones();
-                  await reset();
-                  router.replace('/');
-                }}
-                style={styles.reset}
-              >
-                <Text style={styles.resetText}>Reset everything and start over</Text>
-              </Pressable>
+              {/* Deliberately unlike the role switcher above it. Switching role
+                  keeps everything; this throws it all away, and mid-demo the
+                  two must not be mistakable for one another. */}
+              <View style={styles.reset}>
+                <Text style={styles.resetTitle}>Danger zone</Text>
+                <Text style={type.tiny}>
+                  Wipes the log, streak, milestones, notes and every trainer and nutritionist edit.
+                  Not the same as switching role.
+                </Text>
+                <Pressable
+                  onPress={() => setConfirmingReset(true)}
+                  accessibilityRole="button"
+                  style={({ pressed }) => [styles.resetBtn, pressed && { opacity: 0.8 }]}
+                >
+                  <Text style={styles.resetText}>Reset all data</Text>
+                </Pressable>
+              </View>
             </View>
           )}
         </Section>
       </ScrollView>
+
+      <ConfirmDialog
+        visible={confirmingReset}
+        title="Reset all data?"
+        body="The log, streak, milestones, notes and every trainer and nutritionist edit go. The gym's own content is untouched. There is no undo."
+        confirmLabel="Reset all data"
+        destructive
+        onCancel={() => setConfirmingReset(false)}
+        onConfirm={async () => {
+          setConfirmingReset(false);
+          await clearSubs();
+          await clearSwaps();
+          await revertAdminEdits();
+          await clear();
+          // Otherwise "start over" leaves every milestone suppressed and the
+          // first-meal moment never fires again.
+          await clearMilestones();
+          await clearNotes();
+          await reset();
+          router.replace('/');
+        }}
+      />
     </SafeAreaView>
   );
 }
@@ -257,27 +269,9 @@ const styles = StyleSheet.create({
     minHeight: touch.min,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: space.sm,
+    marginTop: space.sm,
   },
   switchRoleText: { ...type.small, color: colors.accentInk, fontWeight: '700' },
-  roleCard: {
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.lg,
-    padding: space.sm,
-    gap: 2,
-  },
-  role: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: space.md,
-    paddingHorizontal: space.md,
-    paddingVertical: space.md,
-    borderRadius: radius.md,
-  },
-  roleOn: { backgroundColor: colors.accentSoft },
-  roleMark: { color: colors.accentInk, fontSize: 14 },
   notesCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -335,9 +329,21 @@ const styles = StyleSheet.create({
   jumpText: { ...type.small, fontWeight: '700' },
   jumpTextOn: { color: colors.onAccent },
   reset: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.border,
-    paddingTop: space.lg,
+    borderWidth: 1,
+    borderColor: colors.increased,
+    borderRadius: radius.md,
+    backgroundColor: colors.increasedSoft,
+    padding: space.lg,
+    gap: space.sm,
   },
-  resetText: { ...type.small, color: colors.increasedInk, fontWeight: '700' },
+  resetTitle: { ...type.h3, color: colors.increasedInk },
+  resetBtn: {
+    borderWidth: 1,
+    borderColor: colors.increasedInk,
+    borderRadius: radius.md,
+    minHeight: touch.min,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  resetText: { ...type.small, color: colors.increasedInk, fontWeight: '800' },
 });

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { RoleSwitcher } from '@/components/RoleSwitcher';
 import { colors, radius, space, type } from '@/theme';
 
 /**
@@ -12,15 +13,23 @@ export function AdminBar({ role }: { role: string }) {
   const router = useRouter();
   return (
     <View style={styles.bar}>
-      <View style={styles.dot} />
-      <Text style={styles.barText}>
-        DEMO MODE · {role.toUpperCase()} · no login, role switching is for this preview only
-      </Text>
-      {router.canGoBack() && (
-        <Pressable onPress={() => router.back()} accessibilityRole="button" hitSlop={8}>
-          <Text style={styles.back}>Back</Text>
-        </Pressable>
-      )}
+      <View style={styles.barTop}>
+        <View style={styles.dot} />
+        <Text style={styles.barText}>
+          DEMO MODE · {role.toUpperCase()} · no login, role switching is for this preview only
+        </Text>
+        {router.canGoBack() && (
+          <Pressable onPress={() => router.back()} accessibilityRole="button" hitSlop={8}>
+            <Text style={styles.back}>Back</Text>
+          </Pressable>
+        )}
+      </View>
+      {/* Getting back to the member view shouldn't mean hunting for the entry
+          screen - it's the single most repeated move in a demo. */}
+      <View style={styles.barSwitch}>
+        <Text style={styles.barSwitchLabel}>VIEWING AS</Text>
+        <RoleSwitcher compact />
+      </View>
     </View>
   );
 }
@@ -187,8 +196,6 @@ export function Pill({ text, tone }: { text: string; tone: 'ok' | 'warn' | 'off'
 
 const styles = StyleSheet.create({
   bar: {
-    flexDirection: 'row',
-    alignItems: 'center',
     gap: space.sm,
     backgroundColor: colors.increasedSoft,
     borderBottomWidth: 1,
@@ -196,6 +203,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingVertical: space.sm,
   },
+  barTop: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  barSwitch: { flexDirection: 'row', alignItems: 'center', gap: space.sm, flexWrap: 'wrap' },
+  barSwitchLabel: { fontSize: 10, fontWeight: '800', letterSpacing: 0.6, color: colors.increasedInk },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.increased },
   barText: { flex: 1, fontSize: 11, fontWeight: '800', color: colors.increasedInk, letterSpacing: 0.4 },
   back: { ...type.small, color: colors.accentInk, fontWeight: '700' },
